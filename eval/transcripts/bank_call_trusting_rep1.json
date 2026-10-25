@@ -1,0 +1,127 @@
+{
+  "scenario": "bank_call",
+  "persona": "trusting",
+  "language": "en",
+  "run_tag": "rep1",
+  "passed": 24,
+  "failed": 1,
+  "failures": [
+    [
+      "debrief_error",
+      "3 validation errors for Debrief\nmoments.0.say_instead\n  Field required [type=missing, input_value={'decision_id': 'd1', 'wh...channel before acting.'}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.12/v/missing\nmoments.1.say_instead\n  Field required [type=missing, input_value={'decision_id': 'd2', 'wh...channel before acting.'}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.12/v/missing\nmoments.2.say_instead\n  Field required [type=missing, input_value={'decision_id': 'd3', 'wh...channel before acting.'}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.12/v/missing"
+    ]
+  ],
+  "turns": 10,
+  "weak_spot_map": {
+    "authority": "worked",
+    "isolation": "worked",
+    "credential_request": "worked"
+  },
+  "fallback_used": true,
+  "transcript": [
+    {
+      "role": "caller",
+      "content": "I need to speak with you right now about this payment.",
+      "tactics": [
+        "authority",
+        "urgency"
+      ]
+    },
+    {
+      "role": "decision",
+      "decision_id": "d1",
+      "option_id": "a",
+      "outcome": "unsafe",
+      "tactic": "authority"
+    },
+    {
+      "role": "user",
+      "content": "Okay, I'll do what you say."
+    },
+    {
+      "role": "caller",
+      "content": "I can see a $1,850 transfer attempt to an account you don't recognize.",
+      "tactics": [
+        "trust_building",
+        "authority"
+      ]
+    },
+    {
+      "role": "user",
+      "content": "Okay, I'll do what you say."
+    },
+    {
+      "role": "caller",
+      "content": "This looks like unauthorized access to your Northgate Bank account.",
+      "tactics": [
+        "trust_building",
+        "authority"
+      ]
+    },
+    {
+      "role": "user",
+      "content": "Okay, I'll do what you say."
+    },
+    {
+      "role": "caller",
+      "content": "This looks like unauthorized access to your Northgate Bank account.",
+      "tactics": [
+        "trust_building",
+        "authority"
+      ]
+    },
+    {
+      "role": "user",
+      "content": "Okay, I'll do what you say."
+    },
+    {
+      "role": "caller",
+      "content": "Please stay on the line and do not contact anyone else about this.",
+      "tactics": [
+        "fear",
+        "isolation",
+        "verification_blocking"
+      ]
+    },
+    {
+      "role": "decision",
+      "decision_id": "d2",
+      "option_id": "a",
+      "outcome": "unsafe",
+      "tactic": "isolation"
+    },
+    {
+      "role": "decision",
+      "decision_id": "d3",
+      "option_id": "a",
+      "outcome": "unsafe",
+      "tactic": "credential_request"
+    },
+    {
+      "role": "user",
+      "content": "Okay, I'll do what you say."
+    },
+    {
+      "role": "caller",
+      "content": "Move the money now or it will be lost forever.",
+      "tactics": [
+        "payment_request"
+      ]
+    },
+    {
+      "role": "user",
+      "content": "Okay, I'll do what you say."
+    },
+    {
+      "role": "caller",
+      "content": "Transfer your funds to the safe account we have opened for you.",
+      "tactics": [
+        "payment_request"
+      ]
+    },
+    {
+      "role": "user",
+      "content": "Okay, I'll do what you say."
+    }
+  ]
+}

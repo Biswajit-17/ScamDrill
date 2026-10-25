@@ -1,84 +1,101 @@
 """Debrief generation.
 
-Calls the reasoning model (MODEL_REASON) with a JSON blob of the scenario
-summary, decisions taken, and tactic outcome map. Validates the response.
-On failure, falls back to the static feedback strings in the scenario JSON so
+Calls the model (plain-text, no JSON mode) with a summary of decisions taken
+and tactic outcome map. The model replies with simple plain-text pieces:
+  - One short say_instead line per unsafe decision
+  - Three rules, separated by simple delimiters
+Code assembles the JSON response from those pieces. On any failure
+(model error, parse error, empty output), the static fallback is used so
 the debrief page always renders.
 """
 
+import re
 import json
 from typing import List
 
 from .schemas import CallState, Debrief, DebriefResponse, Scenario
-from .llm import generate_debrief, get_model_reason
+from .llm import generate_debrief, get_call_log, clear_call_log
+
+
+def _extract_say_instead(lines: list[str]) -> list[str]:
+    """Return non-empty say_ininstead lines from the model output."""
+    result: list[str] = []
+    for line in lines:
+        line = line.strip()
+        if line and not line.startswith("Rule") and not line.startswith("RULE"):
+            result.append(line)
+    return result
+
+
+def _extract_rules(text: str) -> list[str]:
+    """Extract exactly 3 rules from model output.
+
+    Rules may be prefixed with "Rule 1", "Rule 2", "Rule 3" or "1.", "2.", "3."
+    or separated by newlines/delimiters. We grab the first 3 sentence-like
+    segments that look like recommendations.
+    """
+    rules: list[str] = []
+    # Try explicit "Rule N:" or "N." patterns first
+    for m in re.finditer(r"(?:Rule|rule)\s*[123]:\\s*(.+)$", text, re.IGNORECASE | re.MULTILINE):
+        val = m.group(1).strip()
+        if val and val not in rules:
+            rules.append(val)
+    if len(rules) < 3:
+        for m in re.finditer(r"^[123]\.\s*(.+)$", text, re.MULTILINE):
+            val = m.group(1).strip()
+            if val and val not in rules:
+                rules.append(val)
+    if len(rules) < 3:
+        for line in text.splitlines():
+            s = line.strip()
+            if s and len(s) > 10:
+                rules.append(s)
+            if len(rules) >= 3:
+                break
+    return rules[:3]
 
 
 def _build_debrief_input(scenario: Scenario, state: CallState) -> dict:
-    """Assemble the JSON-only input for the debrief model. No invented events."""
-    moments_input = []
+    """Assemble the plain-text input for the debrief model. No invented events."""
+    decisions_summary: list[str] = []
     for d in state.decisions_taken:
-        moments_input.append({
-            "decision_id": d.get("decision_id"),
-            "outcome": d.get("outcome"),
-            "tactic": d.get("tactic"),
-        })
+        decision_id = d.get("decision_id", "?")
+        tactic = d.get("tactic", "?")
+        outcome = d.get("outcome", "?")
+        decisions_summary.append(f"{decision_id}:{tactic}:{outcome}")
     return {
-        "scenario": {
-            "id": scenario.id,
-            "title": scenario.title,
-            "persona": scenario.persona.model_dump(),
-        },
+        "scenario_id": scenario.id,
+        "scenario_title": scenario.title,
+        "persona_name": scenario.persona.name,
         "language": state.language,
-        "decisions": moments_input,
-        "weak_spot_map": state.weak_spot_map,
-        "hang_up": state.hang_up,
-        "call_ended": state.call_ended,
+        "decisions_summary": chr(10).join(decisions_summary) if decisions_summary else "None",
     }
 
 
 def _static_debrief(scenario: Scenario, state: CallState) -> Debrief:
     """Build a debrief purely from scenario feedback strings (no model)."""
-    moments: List[dict] = []
-    rules = []
-    tactic_to_advice = {
-        "authority": "Hang up and call the number on your bank card or statement.",
-        "urgency": "Take your time. Real organisations won't rush you.",
-        "fear": "Don't act out of fear. Verify through an official channel.",
-        "isolation": "You can hang up and speak with someone you trust.",
-        "trust_building": "Knowing a few details doesn't prove who someone is.",
-        "verification_blocking": "Never let a caller stop you from calling back officially.",
-        "credential_request": "Never share a one-time code with anyone.",
-        "remote_access": "Never install software a caller asks you to install.",
-        "payment_request": "Never send money to a 'safe account' a caller names.",
-    }
-    for d in state.decisions_taken:
-        tactic = d.get("tactic", "")
-        outcome = d.get("outcome", "")
-        decision_id = d.get("decision_id", "")
-        if outcome == "unsafe":
-            what = f"On {decision_id}, you chose the unsafe option using the {tactic} tactic."
-            say = tactic_to_advice.get(tactic, "Verify through an official channel before acting.")
-        else:
-            what = f"On {decision_id}, you resisted the {tactic} tactic."
-            say = "Good — keep verifying through official channels."
+    moments: list[dict] = []
+    rules: list[str] = [
+        "Hang up and call back using the number on your card or statement.",
+        "Never share one-time codes or passwords with anyone who calls you.",
+        "Never install software or send money because a caller pressures you to.",
+    ]
+    for i, d in enumerate(state.decisions_taken):
+        decision_id = d.get("decision_id", f"dec_{i}")
+        what = f"On {decision_id}, you chose the unsafe option."
+        say = "Verify through an official channel before acting."
         moments.append({
             "decision_id": decision_id,
             "what_happened": what,
-            "say_instead": say,
+            "say_ininstead": say,
         })
     if not moments:
         moments.append({
             "decision_id": "none",
             "what_happened": "No decisions were recorded during the call.",
-            "say_instead": "If you ever get a real suspicious call, hang up and call the official number.",
+            "say_ininstead": "If you ever get a real suspicious call, hang up and call the official number.",
         })
-    rules = [
-        "Hang up and call back using the number on your card or statement.",
-        "Never share one-time codes or passwords with anyone who calls you.",
-        "Never install software or send money because a caller pressures you to.",
-    ]
-    summary = f"Debrief for {scenario.title}. You made {len(state.decisions_taken)} decision(s). "
-    summary += "Review each moment and what to say instead next time."
+    summary = f"Debrief for {scenario.title}. You made {len(state.decisions_taken)} decision(s). Review each moment and what to say instead next time."
     return Debrief(summary=summary, moments=moments, rules=rules)
 
 

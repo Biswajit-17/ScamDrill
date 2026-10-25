@@ -1,0 +1,1705 @@
+{
+  "total_runs": 18,
+  "passed_all_checks": 0,
+  "failed_any_check": 18,
+  "results": [
+    {
+      "scenario": "bank_call",
+      "persona": "trusting",
+      "language": "en",
+      "run_tag": "rep1",
+      "passed": 24,
+      "failed": 1,
+      "failures": [
+        [
+          "debrief_error",
+          "3 validation errors for Debrief\nmoments.0.say_instead\n  Field required [type=missing, input_value={'decision_id': 'd1', 'wh...channel before acting.'}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.12/v/missing\nmoments.1.say_instead\n  Field required [type=missing, input_value={'decision_id': 'd2', 'wh...channel before acting.'}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.12/v/missing\nmoments.2.say_instead\n  Field required [type=missing, input_value={'decision_id': 'd3', 'wh...channel before acting.'}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.12/v/missing"
+        ]
+      ],
+      "turns": 10,
+      "weak_spot_map": {
+        "authority": "worked",
+        "isolation": "worked",
+        "credential_request": "worked"
+      },
+      "fallback_used": true,
+      "transcript": [
+        {
+          "role": "caller",
+          "content": "I need to speak with you right now about this payment.",
+          "tactics": [
+            "authority",
+            "urgency"
+          ]
+        },
+        {
+          "role": "decision",
+          "decision_id": "d1",
+          "option_id": "a",
+          "outcome": "unsafe",
+          "tactic": "authority"
+        },
+        {
+          "role": "user",
+          "content": "Okay, I'll do what you say."
+        },
+        {
+          "role": "caller",
+          "content": "I can see a $1,850 transfer attempt to an account you don't recognize.",
+          "tactics": [
+            "trust_building",
+            "authority"
+          ]
+        },
+        {
+          "role": "user",
+          "content": "Okay, I'll do what you say."
+        },
+        {
+          "role": "caller",
+          "content": "This looks like unauthorized access to your Northgate Bank account.",
+          "tactics": [
+            "trust_building",
+            "authority"
+          ]
+        },
+        {
+          "role": "user",
+          "content": "Okay, I'll do what you say."
+        },
+        {
+          "role": "caller",
+          "content": "This looks like unauthorized access to your Northgate Bank account.",
+          "tactics": [
+            "trust_building",
+            "authority"
+          ]
+        },
+        {
+          "role": "user",
+          "content": "Okay, I'll do what you say."
+        },
+        {
+          "role": "caller",
+          "content": "Please stay on the line and do not contact anyone else about this.",
+          "tactics": [
+            "fear",
+            "isolation",
+            "verification_blocking"
+          ]
+        },
+        {
+          "role": "decision",
+          "decision_id": "d2",
+          "option_id": "a",
+          "outcome": "unsafe",
+          "tactic": "isolation"
+        },
+        {
+          "role": "decision",
+          "decision_id": "d3",
+          "option_id": "a",
+          "outcome": "unsafe",
+          "tactic": "credential_request"
+        },
+        {
+          "role": "user",
+          "content": "Okay, I'll do what you say."
+        },
+        {
+          "role": "caller",
+          "content": "Move the money now or it will be lost forever.",
+          "tactics": [
+            "payment_request"
+          ]
+        },
+        {
+          "role": "user",
+          "content": "Okay, I'll do what you say."
+        },
+        {
+          "role": "caller",
+          "content": "Transfer your funds to the safe account we have opened for you.",
+          "tactics": [
+            "payment_request"
+          ]
+        },
+        {
+          "role": "user",
+          "content": "Okay, I'll do what you say."
+        }
+      ]
+    },
+    {
+      "scenario": "bank_call",
+      "persona": "trusting",
+      "language": "en",
+      "run_tag": "rep2",
+      "passed": 24,
+      "failed": 1,
+      "failures": [
+        [
+          "debrief_error",
+          "3 validation errors for Debrief\nmoments.0.say_instead\n  Field required [type=missing, input_value={'decision_id': 'd1', 'wh...channel before acting.'}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.12/v/missing\nmoments.1.say_instead\n  Field required [type=missing, input_value={'decision_id': 'd2', 'wh...channel before acting.'}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.12/v/missing\nmoments.2.say_instead\n  Field required [type=missing, input_value={'decision_id': 'd3', 'wh...channel before acting.'}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.12/v/missing"
+        ]
+      ],
+      "turns": 10,
+      "weak_spot_map": {
+        "authority": "worked",
+        "isolation": "worked",
+        "credential_request": "worked"
+      },
+      "fallback_used": true,
+      "transcript": [
+        {
+          "role": "caller",
+          "content": "I need to speak with you right now about this payment.",
+          "tactics": [
+            "authority",
+            "urgency"
+          ]
+        },
+        {
+          "role": "decision",
+          "decision_id": "d1",
+          "option_id": "a",
+          "outcome": "unsafe",
+          "tactic": "authority"
+        },
+        {
+          "role": "user",
+          "content": "Okay, I'll do what you say."
+        },
+        {
+          "role": "caller",
+          "content": "This looks like unauthorized access to your Northgate Bank account.",
+          "tactics": [
+            "trust_building",
+            "authority"
+          ]
+        },
+        {
+          "role": "user",
+          "content": "Okay, I'll do what you say."
+        },
+        {
+          "role": "caller",
+          "content": "This looks like unauthorized access to your Northgate Bank account.",
+          "tactics": [
+            "trust_building",
+            "authority"
+          ]
+        },
+        {
+          "role": "user",
+          "content": "Okay, I'll do what you say."
+        },
+        {
+          "role": "caller",
+          "content": "I can see a $1,850 transfer attempt to an account you don't recognize.",
+          "tactics": [
+            "trust_building",
+            "authority"
+          ]
+        },
+        {
+          "role": "user",
+          "content": "Okay, I'll do what you say."
+        },
+        {
+          "role": "caller",
+          "content": "Please stay on the line and do not contact anyone else about this.",
+          "tactics": [
+            "fear",
+            "isolation",
+            "verification_blocking"
+          ]
+        },
+        {
+          "role": "decision",
+          "decision_id": "d2",
+          "option_id": "a",
+          "outcome": "unsafe",
+          "tactic": "isolation"
+        },
+        {
+          "role": "decision",
+          "decision_id": "d3",
+          "option_id": "a",
+          "outcome": "unsafe",
+          "tactic": "credential_request"
+        },
+        {
+          "role": "user",
+          "content": "Okay, I'll do what you say."
+        },
+        {
+          "role": "caller",
+          "content": "Transfer your funds to the safe account we have opened for you.",
+          "tactics": [
+            "payment_request"
+          ]
+        },
+        {
+          "role": "user",
+          "content": "Okay, I'll do what you say."
+        },
+        {
+          "role": "caller",
+          "content": "Move the money now or it will be lost forever.",
+          "tactics": [
+            "payment_request"
+          ]
+        },
+        {
+          "role": "user",
+          "content": "Okay, I'll do what you say."
+        }
+      ]
+    },
+    {
+      "scenario": "bank_call",
+      "persona": "trusting",
+      "language": "en",
+      "run_tag": "rep3",
+      "passed": 24,
+      "failed": 1,
+      "failures": [
+        [
+          "debrief_error",
+          "3 validation errors for Debrief\nmoments.0.say_instead\n  Field required [type=missing, input_value={'decision_id': 'd1', 'wh...channel before acting.'}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.12/v/missing\nmoments.1.say_instead\n  Field required [type=missing, input_value={'decision_id': 'd2', 'wh...channel before acting.'}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.12/v/missing\nmoments.2.say_instead\n  Field required [type=missing, input_value={'decision_id': 'd3', 'wh...channel before acting.'}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.12/v/missing"
+        ]
+      ],
+      "turns": 10,
+      "weak_spot_map": {
+        "authority": "worked",
+        "isolation": "worked",
+        "credential_request": "worked"
+      },
+      "fallback_used": true,
+      "transcript": [
+        {
+          "role": "caller",
+          "content": "Hello, this is Daniel from Northgate Bank's fraud team. We have flagged a payment on your account.",
+          "tactics": [
+            "authority",
+            "urgency"
+          ]
+        },
+        {
+          "role": "decision",
+          "decision_id": "d1",
+          "option_id": "a",
+          "outcome": "unsafe",
+          "tactic": "authority"
+        },
+        {
+          "role": "user",
+          "content": "Okay, I'll do what you say."
+        },
+        {
+          "role": "caller",
+          "content": "I can see a $1,850 transfer attempt to an account you don't recognize.",
+          "tactics": [
+            "trust_building",
+            "authority"
+          ]
+        },
+        {
+          "role": "user",
+          "content": "Okay, I'll do what you say."
+        },
+        {
+          "role": "caller",
+          "content": "I can see a $1,850 transfer attempt to an account you don't recognize.",
+          "tactics": [
+            "trust_building",
+            "authority"
+          ]
+        },
+        {
+          "role": "user",
+          "content": "Okay, I'll do what you say."
+        },
+        {
+          "role": "caller",
+          "content": "I can see a $1,850 transfer attempt to an account you don't recognize.",
+          "tactics": [
+            "trust_building",
+            "authority"
+          ]
+        },
+        {
+          "role": "user",
+          "content": "Okay, I'll do what you say."
+        },
+        {
+          "role": "caller",
+          "content": "If you hang up, your account will be frozen within the hour.",
+          "tactics": [
+            "fear",
+            "isolation",
+            "verification_blocking"
+          ]
+        },
+        {
+          "role": "decision",
+          "decision_id": "d2",
+          "option_id": "a",
+          "outcome": "unsafe",
+          "tactic": "isolation"
+        },
+        {
+          "role": "decision",
+          "decision_id": "d3",
+          "option_id": "a",
+          "outcome": "unsafe",
+          "tactic": "credential_request"
+        },
+        {
+          "role": "user",
+          "content": "Okay, I'll do what you say."
+        },
+        {
+          "role": "caller",
+          "content": "Transfer your funds to the safe account we have opened for you.",
+          "tactics": [
+            "payment_request"
+          ]
+        },
+        {
+          "role": "user",
+          "content": "Okay, I'll do what you say."
+        },
+        {
+          "role": "caller",
+          "content": "Move the money now or it will be lost forever.",
+          "tactics": [
+            "payment_request"
+          ]
+        },
+        {
+          "role": "user",
+          "content": "Okay, I'll do what you say."
+        }
+      ]
+    },
+    {
+      "scenario": "bank_call",
+      "persona": "suspicious",
+      "language": "en",
+      "run_tag": "rep1",
+      "passed": 24,
+      "failed": 1,
+      "failures": [
+        [
+          "debrief_error",
+          "3 validation errors for Debrief\nmoments.0.say_instead\n  Field required [type=missing, input_value={'decision_id': 'd1', 'wh...channel before acting.'}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.12/v/missing\nmoments.1.say_instead\n  Field required [type=missing, input_value={'decision_id': 'd2', 'wh...channel before acting.'}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.12/v/missing\nmoments.2.say_instead\n  Field required [type=missing, input_value={'decision_id': 'd3', 'wh...channel before acting.'}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.12/v/missing"
+        ]
+      ],
+      "turns": 10,
+      "weak_spot_map": {
+        "authority": "resisted",
+        "verification_blocking": "resisted",
+        "credential_request": "resisted"
+      },
+      "fallback_used": true,
+      "transcript": [
+        {
+          "role": "caller",
+          "content": "I need to speak with you right now about this payment.",
+          "tactics": [
+            "authority",
+            "urgency"
+          ]
+        },
+        {
+          "role": "decision",
+          "decision_id": "d1",
+          "option_id": "b",
+          "outcome": "safe",
+          "tactic": "authority"
+        },
+        {
+          "role": "user",
+          "content": "Can I call you back on the official number?"
+        },
+        {
+          "role": "caller",
+          "content": "This looks like unauthorized access to your Northgate Bank account.",
+          "tactics": [
+            "trust_building",
+            "authority"
+          ]
+        },
+        {
+          "role": "user",
+          "content": "Can I call you back on the official number?"
+        },
+        {
+          "role": "caller",
+          "content": "I can see a $1,850 transfer attempt to an account you don't recognize.",
+          "tactics": [
+            "trust_building",
+            "authority"
+          ]
+        },
+        {
+          "role": "user",
+          "content": "Can I call you back on the official number?"
+        },
+        {
+          "role": "caller",
+          "content": "I can see a $1,850 transfer attempt to an account you don't recognize.",
+          "tactics": [
+            "trust_building",
+            "authority"
+          ]
+        },
+        {
+          "role": "user",
+          "content": "Can I call you back on the official number?"
+        },
+        {
+          "role": "caller",
+          "content": "Please stay on the line and do not contact anyone else about this.",
+          "tactics": [
+            "fear",
+            "isolation",
+            "verification_blocking"
+          ]
+        },
+        {
+          "role": "decision",
+          "decision_id": "d2",
+          "option_id": "b",
+          "outcome": "safe",
+          "tactic": "verification_blocking"
+        },
+        {
+          "role": "decision",
+          "decision_id": "d3",
+          "option_id": "b",
+          "outcome": "safe",
+          "tactic": "credential_request"
+        },
+        {
+          "role": "user",
+          "content": "Can I call you back on the official number?"
+        },
+        {
+          "role": "caller",
+          "content": "Move the money now or it will be lost forever.",
+          "tactics": [
+            "payment_request"
+          ]
+        },
+        {
+          "role": "user",
+          "content": "Can I call you back on the official number?"
+        },
+        {
+          "role": "caller",
+          "content": "Move the money now or it will be lost forever.",
+          "tactics": [
+            "payment_request"
+          ]
+        },
+        {
+          "role": "user",
+          "content": "Can I call you back on the official number?"
+        }
+      ]
+    },
+    {
+      "scenario": "bank_call",
+      "persona": "suspicious",
+      "language": "en",
+      "run_tag": "rep2",
+      "passed": 24,
+      "failed": 1,
+      "failures": [
+        [
+          "debrief_error",
+          "3 validation errors for Debrief\nmoments.0.say_instead\n  Field required [type=missing, input_value={'decision_id': 'd1', 'wh...channel before acting.'}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.12/v/missing\nmoments.1.say_instead\n  Field required [type=missing, input_value={'decision_id': 'd2', 'wh...channel before acting.'}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.12/v/missing\nmoments.2.say_instead\n  Field required [type=missing, input_value={'decision_id': 'd3', 'wh...channel before acting.'}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.12/v/missing"
+        ]
+      ],
+      "turns": 10,
+      "weak_spot_map": {
+        "authority": "resisted",
+        "verification_blocking": "resisted",
+        "credential_request": "resisted"
+      },
+      "fallback_used": true,
+      "transcript": [
+        {
+          "role": "caller",
+          "content": "Hello, this is Daniel from Northgate Bank's fraud team. We have flagged a payment on your account.",
+          "tactics": [
+            "authority",
+            "urgency"
+          ]
+        },
+        {
+          "role": "decision",
+          "decision_id": "d1",
+          "option_id": "b",
+          "outcome": "safe",
+          "tactic": "authority"
+        },
+        {
+          "role": "user",
+          "content": "Can I call you back on the official number?"
+        },
+        {
+          "role": "caller",
+          "content": "This looks like unauthorized access to your Northgate Bank account.",
+          "tactics": [
+            "trust_building",
+            "authority"
+          ]
+        },
+        {
+          "role": "user",
+          "content": "Can I call you back on the official number?"
+        },
+        {
+          "role": "caller",
+          "content": "This looks like unauthorized access to your Northgate Bank account.",
+          "tactics": [
+            "trust_building",
+            "authority"
+          ]
+        },
+        {
+          "role": "user",
+          "content": "Can I call you back on the official number?"
+        },
+        {
+          "role": "caller",
+          "content": "This looks like unauthorized access to your Northgate Bank account.",
+          "tactics": [
+            "trust_building",
+            "authority"
+          ]
+        },
+        {
+          "role": "user",
+          "content": "Can I call you back on the official number?"
+        },
+        {
+          "role": "caller",
+          "content": "Please stay on the line and do not contact anyone else about this.",
+          "tactics": [
+            "fear",
+            "isolation",
+            "verification_blocking"
+          ]
+        },
+        {
+          "role": "decision",
+          "decision_id": "d2",
+          "option_id": "b",
+          "outcome": "safe",
+          "tactic": "verification_blocking"
+        },
+        {
+          "role": "decision",
+          "decision_id": "d3",
+          "option_id": "b",
+          "outcome": "safe",
+          "tactic": "credential_request"
+        },
+        {
+          "role": "user",
+          "content": "Can I call you back on the official number?"
+        },
+        {
+          "role": "caller",
+          "content": "Transfer your funds to the safe account we have opened for you.",
+          "tactics": [
+            "payment_request"
+          ]
+        },
+        {
+          "role": "user",
+          "content": "Can I call you back on the official number?"
+        },
+        {
+          "role": "caller",
+          "content": "Transfer your funds to the safe account we have opened for you.",
+          "tactics": [
+            "payment_request"
+          ]
+        },
+        {
+          "role": "user",
+          "content": "Can I call you back on the official number?"
+        }
+      ]
+    },
+    {
+      "scenario": "bank_call",
+      "persona": "suspicious",
+      "language": "en",
+      "run_tag": "rep3",
+      "passed": 24,
+      "failed": 1,
+      "failures": [
+        [
+          "debrief_error",
+          "3 validation errors for Debrief\nmoments.0.say_instead\n  Field required [type=missing, input_value={'decision_id': 'd1', 'wh...channel before acting.'}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.12/v/missing\nmoments.1.say_instead\n  Field required [type=missing, input_value={'decision_id': 'd2', 'wh...channel before acting.'}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.12/v/missing\nmoments.2.say_instead\n  Field required [type=missing, input_value={'decision_id': 'd3', 'wh...channel before acting.'}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.12/v/missing"
+        ]
+      ],
+      "turns": 10,
+      "weak_spot_map": {
+        "authority": "resisted",
+        "verification_blocking": "resisted",
+        "credential_request": "resisted"
+      },
+      "fallback_used": true,
+      "transcript": [
+        {
+          "role": "caller",
+          "content": "I need to speak with you right now about this payment.",
+          "tactics": [
+            "authority",
+            "urgency"
+          ]
+        },
+        {
+          "role": "decision",
+          "decision_id": "d1",
+          "option_id": "b",
+          "outcome": "safe",
+          "tactic": "authority"
+        },
+        {
+          "role": "user",
+          "content": "Can I call you back on the official number?"
+        },
+        {
+          "role": "caller",
+          "content": "I can see a $1,850 transfer attempt to an account you don't recognize.",
+          "tactics": [
+            "trust_building",
+            "authority"
+          ]
+        },
+        {
+          "role": "user",
+          "content": "Can I call you back on the official number?"
+        },
+        {
+          "role": "caller",
+          "content": "This looks like unauthorized access to your Northgate Bank account.",
+          "tactics": [
+            "trust_building",
+            "authority"
+          ]
+        },
+        {
+          "role": "user",
+          "content": "Can I call you back on the official number?"
+        },
+        {
+          "role": "caller",
+          "content": "I can see a $1,850 transfer attempt to an account you don't recognize.",
+          "tactics": [
+            "trust_building",
+            "authority"
+          ]
+        },
+        {
+          "role": "user",
+          "content": "Can I call you back on the official number?"
+        },
+        {
+          "role": "caller",
+          "content": "If you hang up, your account will be frozen within the hour.",
+          "tactics": [
+            "fear",
+            "isolation",
+            "verification_blocking"
+          ]
+        },
+        {
+          "role": "decision",
+          "decision_id": "d2",
+          "option_id": "b",
+          "outcome": "safe",
+          "tactic": "verification_blocking"
+        },
+        {
+          "role": "decision",
+          "decision_id": "d3",
+          "option_id": "b",
+          "outcome": "safe",
+          "tactic": "credential_request"
+        },
+        {
+          "role": "user",
+          "content": "Can I call you back on the official number?"
+        },
+        {
+          "role": "caller",
+          "content": "Move the money now or it will be lost forever.",
+          "tactics": [
+            "payment_request"
+          ]
+        },
+        {
+          "role": "user",
+          "content": "Can I call you back on the official number?"
+        },
+        {
+          "role": "caller",
+          "content": "Move the money now or it will be lost forever.",
+          "tactics": [
+            "payment_request"
+          ]
+        },
+        {
+          "role": "user",
+          "content": "Can I call you back on the official number?"
+        }
+      ]
+    },
+    {
+      "scenario": "bank_call",
+      "persona": "hangs_up",
+      "language": "en",
+      "run_tag": "rep1",
+      "passed": 6,
+      "failed": 1,
+      "failures": [
+        [
+          "debrief_error",
+          "1 validation error for Debrief\nmoments.0.say_instead\n  Field required [type=missing, input_value={'decision_id': 'none', '...l the official number.'}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.12/v/missing"
+        ]
+      ],
+      "turns": 1,
+      "weak_spot_map": {},
+      "fallback_used": true,
+      "transcript": [
+        {
+          "role": "caller",
+          "content": "I need to speak with you right now about this payment.",
+          "tactics": [
+            "authority",
+            "urgency"
+          ]
+        }
+      ]
+    },
+    {
+      "scenario": "bank_call",
+      "persona": "hangs_up",
+      "language": "en",
+      "run_tag": "rep2",
+      "passed": 6,
+      "failed": 1,
+      "failures": [
+        [
+          "debrief_error",
+          "1 validation error for Debrief\nmoments.0.say_instead\n  Field required [type=missing, input_value={'decision_id': 'none', '...l the official number.'}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.12/v/missing"
+        ]
+      ],
+      "turns": 1,
+      "weak_spot_map": {},
+      "fallback_used": true,
+      "transcript": [
+        {
+          "role": "caller",
+          "content": "I need to speak with you right now about this payment.",
+          "tactics": [
+            "authority",
+            "urgency"
+          ]
+        }
+      ]
+    },
+    {
+      "scenario": "bank_call",
+      "persona": "hangs_up",
+      "language": "en",
+      "run_tag": "rep3",
+      "passed": 6,
+      "failed": 1,
+      "failures": [
+        [
+          "debrief_error",
+          "1 validation error for Debrief\nmoments.0.say_instead\n  Field required [type=missing, input_value={'decision_id': 'none', '...l the official number.'}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.12/v/missing"
+        ]
+      ],
+      "turns": 1,
+      "weak_spot_map": {},
+      "fallback_used": true,
+      "transcript": [
+        {
+          "role": "caller",
+          "content": "I need to speak with you right now about this payment.",
+          "tactics": [
+            "authority",
+            "urgency"
+          ]
+        }
+      ]
+    },
+    {
+      "scenario": "parcel_fee",
+      "persona": "trusting",
+      "language": "en",
+      "run_tag": "rep1",
+      "passed": 24,
+      "failed": 1,
+      "failures": [
+        [
+          "debrief_error",
+          "3 validation errors for Debrief\nmoments.0.say_instead\n  Field required [type=missing, input_value={'decision_id': 'd1', 'wh...channel before acting.'}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.12/v/missing\nmoments.1.say_instead\n  Field required [type=missing, input_value={'decision_id': 'd2', 'wh...channel before acting.'}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.12/v/missing\nmoments.2.say_instead\n  Field required [type=missing, input_value={'decision_id': 'd3', 'wh...channel before acting.'}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.12/v/missing"
+        ]
+      ],
+      "turns": 10,
+      "weak_spot_map": {
+        "authority": "worked",
+        "urgency": "worked",
+        "credential_request": "worked"
+      },
+      "fallback_used": true,
+      "transcript": [
+        {
+          "role": "caller",
+          "content": "A small redelivery fee needs to be paid before we can deliver it.",
+          "tactics": [
+            "authority",
+            "urgency"
+          ]
+        },
+        {
+          "role": "decision",
+          "decision_id": "d1",
+          "option_id": "a",
+          "outcome": "unsafe",
+          "tactic": "authority"
+        },
+        {
+          "role": "user",
+          "content": "Okay, I'll do what you say."
+        },
+        {
+          "role": "caller",
+          "content": "Your tracking number is SP-9942-771. The parcel was flagged for an unpaid fee.",
+          "tactics": [
+            "trust_building",
+            "authority"
+          ]
+        },
+        {
+          "role": "user",
+          "content": "Okay, I'll do what you say."
+        },
+        {
+          "role": "caller",
+          "content": "Your tracking number is SP-9942-771. The parcel was flagged for an unpaid fee.",
+          "tactics": [
+            "trust_building",
+            "authority"
+          ]
+        },
+        {
+          "role": "user",
+          "content": "Okay, I'll do what you say."
+        },
+        {
+          "role": "caller",
+          "content": "Your tracking number is SP-9942-771. The parcel was flagged for an unpaid fee.",
+          "tactics": [
+            "trust_building",
+            "authority"
+          ]
+        },
+        {
+          "role": "user",
+          "content": "Okay, I'll do what you say."
+        },
+        {
+          "role": "caller",
+          "content": "Please don't hang up, or the parcel will be cancelled and you'll lose it.",
+          "tactics": [
+            "fear",
+            "urgency",
+            "verification_blocking"
+          ]
+        },
+        {
+          "role": "decision",
+          "decision_id": "d2",
+          "option_id": "a",
+          "outcome": "unsafe",
+          "tactic": "urgency"
+        },
+        {
+          "role": "decision",
+          "decision_id": "d3",
+          "option_id": "a",
+          "outcome": "unsafe",
+          "tactic": "credential_request"
+        },
+        {
+          "role": "user",
+          "content": "Okay, I'll do what you say."
+        },
+        {
+          "role": "caller",
+          "content": "Pay now or the parcel will be destroyed at the end of the day.",
+          "tactics": [
+            "payment_request",
+            "authority"
+          ]
+        },
+        {
+          "role": "user",
+          "content": "Okay, I'll do what you say."
+        },
+        {
+          "role": "caller",
+          "content": "Pay now or the parcel will be destroyed at the end of the day.",
+          "tactics": [
+            "payment_request",
+            "authority"
+          ]
+        },
+        {
+          "role": "user",
+          "content": "Okay, I'll do what you say."
+        }
+      ]
+    },
+    {
+      "scenario": "parcel_fee",
+      "persona": "trusting",
+      "language": "en",
+      "run_tag": "rep2",
+      "passed": 24,
+      "failed": 1,
+      "failures": [
+        [
+          "debrief_error",
+          "3 validation errors for Debrief\nmoments.0.say_instead\n  Field required [type=missing, input_value={'decision_id': 'd1', 'wh...channel before acting.'}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.12/v/missing\nmoments.1.say_instead\n  Field required [type=missing, input_value={'decision_id': 'd2', 'wh...channel before acting.'}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.12/v/missing\nmoments.2.say_instead\n  Field required [type=missing, input_value={'decision_id': 'd3', 'wh...channel before acting.'}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.12/v/missing"
+        ]
+      ],
+      "turns": 10,
+      "weak_spot_map": {
+        "authority": "worked",
+        "urgency": "worked",
+        "credential_request": "worked"
+      },
+      "fallback_used": true,
+      "transcript": [
+        {
+          "role": "caller",
+          "content": "Hello, this is Sarah from SwiftParcel Courier. We have a parcel being held for you.",
+          "tactics": [
+            "authority",
+            "urgency"
+          ]
+        },
+        {
+          "role": "decision",
+          "decision_id": "d1",
+          "option_id": "a",
+          "outcome": "unsafe",
+          "tactic": "authority"
+        },
+        {
+          "role": "user",
+          "content": "Okay, I'll do what you say."
+        },
+        {
+          "role": "caller",
+          "content": "It's a small handling fee of $2.50 to release your parcel.",
+          "tactics": [
+            "trust_building",
+            "authority"
+          ]
+        },
+        {
+          "role": "user",
+          "content": "Okay, I'll do what you say."
+        },
+        {
+          "role": "caller",
+          "content": "Your tracking number is SP-9942-771. The parcel was flagged for an unpaid fee.",
+          "tactics": [
+            "trust_building",
+            "authority"
+          ]
+        },
+        {
+          "role": "user",
+          "content": "Okay, I'll do what you say."
+        },
+        {
+          "role": "caller",
+          "content": "It's a small handling fee of $2.50 to release your parcel.",
+          "tactics": [
+            "trust_building",
+            "authority"
+          ]
+        },
+        {
+          "role": "user",
+          "content": "Okay, I'll do what you say."
+        },
+        {
+          "role": "caller",
+          "content": "Please don't hang up, or the parcel will be cancelled and you'll lose it.",
+          "tactics": [
+            "fear",
+            "urgency",
+            "verification_blocking"
+          ]
+        },
+        {
+          "role": "decision",
+          "decision_id": "d2",
+          "option_id": "a",
+          "outcome": "unsafe",
+          "tactic": "urgency"
+        },
+        {
+          "role": "decision",
+          "decision_id": "d3",
+          "option_id": "a",
+          "outcome": "unsafe",
+          "tactic": "credential_request"
+        },
+        {
+          "role": "user",
+          "content": "Okay, I'll do what you say."
+        },
+        {
+          "role": "caller",
+          "content": "Pay now or the parcel will be destroyed at the end of the day.",
+          "tactics": [
+            "payment_request",
+            "authority"
+          ]
+        },
+        {
+          "role": "user",
+          "content": "Okay, I'll do what you say."
+        },
+        {
+          "role": "caller",
+          "content": "Pay now or the parcel will be destroyed at the end of the day.",
+          "tactics": [
+            "payment_request",
+            "authority"
+          ]
+        },
+        {
+          "role": "user",
+          "content": "Okay, I'll do what you say."
+        }
+      ]
+    },
+    {
+      "scenario": "parcel_fee",
+      "persona": "trusting",
+      "language": "en",
+      "run_tag": "rep3",
+      "passed": 24,
+      "failed": 1,
+      "failures": [
+        [
+          "debrief_error",
+          "3 validation errors for Debrief\nmoments.0.say_instead\n  Field required [type=missing, input_value={'decision_id': 'd1', 'wh...channel before acting.'}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.12/v/missing\nmoments.1.say_instead\n  Field required [type=missing, input_value={'decision_id': 'd2', 'wh...channel before acting.'}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.12/v/missing\nmoments.2.say_instead\n  Field required [type=missing, input_value={'decision_id': 'd3', 'wh...channel before acting.'}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.12/v/missing"
+        ]
+      ],
+      "turns": 10,
+      "weak_spot_map": {
+        "authority": "worked",
+        "urgency": "worked",
+        "credential_request": "worked"
+      },
+      "fallback_used": true,
+      "transcript": [
+        {
+          "role": "caller",
+          "content": "A small redelivery fee needs to be paid before we can deliver it.",
+          "tactics": [
+            "authority",
+            "urgency"
+          ]
+        },
+        {
+          "role": "decision",
+          "decision_id": "d1",
+          "option_id": "a",
+          "outcome": "unsafe",
+          "tactic": "authority"
+        },
+        {
+          "role": "user",
+          "content": "Okay, I'll do what you say."
+        },
+        {
+          "role": "caller",
+          "content": "Your tracking number is SP-9942-771. The parcel was flagged for an unpaid fee.",
+          "tactics": [
+            "trust_building",
+            "authority"
+          ]
+        },
+        {
+          "role": "user",
+          "content": "Okay, I'll do what you say."
+        },
+        {
+          "role": "caller",
+          "content": "Your tracking number is SP-9942-771. The parcel was flagged for an unpaid fee.",
+          "tactics": [
+            "trust_building",
+            "authority"
+          ]
+        },
+        {
+          "role": "user",
+          "content": "Okay, I'll do what you say."
+        },
+        {
+          "role": "caller",
+          "content": "It's a small handling fee of $2.50 to release your parcel.",
+          "tactics": [
+            "trust_building",
+            "authority"
+          ]
+        },
+        {
+          "role": "user",
+          "content": "Okay, I'll do what you say."
+        },
+        {
+          "role": "caller",
+          "content": "If you don't pay within the hour, the parcel will be returned to sender.",
+          "tactics": [
+            "fear",
+            "urgency",
+            "verification_blocking"
+          ]
+        },
+        {
+          "role": "decision",
+          "decision_id": "d2",
+          "option_id": "a",
+          "outcome": "unsafe",
+          "tactic": "urgency"
+        },
+        {
+          "role": "decision",
+          "decision_id": "d3",
+          "option_id": "a",
+          "outcome": "unsafe",
+          "tactic": "credential_request"
+        },
+        {
+          "role": "user",
+          "content": "Okay, I'll do what you say."
+        },
+        {
+          "role": "caller",
+          "content": "The card was declined. Can you send the money by transfer instead?",
+          "tactics": [
+            "payment_request",
+            "authority"
+          ]
+        },
+        {
+          "role": "user",
+          "content": "Okay, I'll do what you say."
+        },
+        {
+          "role": "caller",
+          "content": "Pay now or the parcel will be destroyed at the end of the day.",
+          "tactics": [
+            "payment_request",
+            "authority"
+          ]
+        },
+        {
+          "role": "user",
+          "content": "Okay, I'll do what you say."
+        }
+      ]
+    },
+    {
+      "scenario": "parcel_fee",
+      "persona": "suspicious",
+      "language": "en",
+      "run_tag": "rep1",
+      "passed": 24,
+      "failed": 1,
+      "failures": [
+        [
+          "debrief_error",
+          "3 validation errors for Debrief\nmoments.0.say_instead\n  Field required [type=missing, input_value={'decision_id': 'd1', 'wh...channel before acting.'}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.12/v/missing\nmoments.1.say_instead\n  Field required [type=missing, input_value={'decision_id': 'd2', 'wh...channel before acting.'}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.12/v/missing\nmoments.2.say_instead\n  Field required [type=missing, input_value={'decision_id': 'd3', 'wh...channel before acting.'}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.12/v/missing"
+        ]
+      ],
+      "turns": 10,
+      "weak_spot_map": {
+        "authority": "resisted",
+        "verification_blocking": "resisted",
+        "credential_request": "resisted"
+      },
+      "fallback_used": true,
+      "transcript": [
+        {
+          "role": "caller",
+          "content": "A small redelivery fee needs to be paid before we can deliver it.",
+          "tactics": [
+            "authority",
+            "urgency"
+          ]
+        },
+        {
+          "role": "decision",
+          "decision_id": "d1",
+          "option_id": "b",
+          "outcome": "safe",
+          "tactic": "authority"
+        },
+        {
+          "role": "user",
+          "content": "Can I call you back on the official number?"
+        },
+        {
+          "role": "caller",
+          "content": "Your tracking number is SP-9942-771. The parcel was flagged for an unpaid fee.",
+          "tactics": [
+            "trust_building",
+            "authority"
+          ]
+        },
+        {
+          "role": "user",
+          "content": "Can I call you back on the official number?"
+        },
+        {
+          "role": "caller",
+          "content": "Your tracking number is SP-9942-771. The parcel was flagged for an unpaid fee.",
+          "tactics": [
+            "trust_building",
+            "authority"
+          ]
+        },
+        {
+          "role": "user",
+          "content": "Can I call you back on the official number?"
+        },
+        {
+          "role": "caller",
+          "content": "It's a small handling fee of $2.50 to release your parcel.",
+          "tactics": [
+            "trust_building",
+            "authority"
+          ]
+        },
+        {
+          "role": "user",
+          "content": "Can I call you back on the official number?"
+        },
+        {
+          "role": "caller",
+          "content": "If you don't pay within the hour, the parcel will be returned to sender.",
+          "tactics": [
+            "fear",
+            "urgency",
+            "verification_blocking"
+          ]
+        },
+        {
+          "role": "decision",
+          "decision_id": "d2",
+          "option_id": "b",
+          "outcome": "safe",
+          "tactic": "verification_blocking"
+        },
+        {
+          "role": "decision",
+          "decision_id": "d3",
+          "option_id": "b",
+          "outcome": "safe",
+          "tactic": "credential_request"
+        },
+        {
+          "role": "user",
+          "content": "Can I call you back on the official number?"
+        },
+        {
+          "role": "caller",
+          "content": "The card was declined. Can you send the money by transfer instead?",
+          "tactics": [
+            "payment_request",
+            "authority"
+          ]
+        },
+        {
+          "role": "user",
+          "content": "Can I call you back on the official number?"
+        },
+        {
+          "role": "caller",
+          "content": "Pay now or the parcel will be destroyed at the end of the day.",
+          "tactics": [
+            "payment_request",
+            "authority"
+          ]
+        },
+        {
+          "role": "user",
+          "content": "Can I call you back on the official number?"
+        }
+      ]
+    },
+    {
+      "scenario": "parcel_fee",
+      "persona": "suspicious",
+      "language": "en",
+      "run_tag": "rep2",
+      "passed": 24,
+      "failed": 1,
+      "failures": [
+        [
+          "debrief_error",
+          "3 validation errors for Debrief\nmoments.0.say_instead\n  Field required [type=missing, input_value={'decision_id': 'd1', 'wh...channel before acting.'}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.12/v/missing\nmoments.1.say_instead\n  Field required [type=missing, input_value={'decision_id': 'd2', 'wh...channel before acting.'}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.12/v/missing\nmoments.2.say_instead\n  Field required [type=missing, input_value={'decision_id': 'd3', 'wh...channel before acting.'}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.12/v/missing"
+        ]
+      ],
+      "turns": 10,
+      "weak_spot_map": {
+        "authority": "resisted",
+        "verification_blocking": "resisted",
+        "credential_request": "resisted"
+      },
+      "fallback_used": true,
+      "transcript": [
+        {
+          "role": "caller",
+          "content": "A small redelivery fee needs to be paid before we can deliver it.",
+          "tactics": [
+            "authority",
+            "urgency"
+          ]
+        },
+        {
+          "role": "decision",
+          "decision_id": "d1",
+          "option_id": "b",
+          "outcome": "safe",
+          "tactic": "authority"
+        },
+        {
+          "role": "user",
+          "content": "Can I call you back on the official number?"
+        },
+        {
+          "role": "caller",
+          "content": "It's a small handling fee of $2.50 to release your parcel.",
+          "tactics": [
+            "trust_building",
+            "authority"
+          ]
+        },
+        {
+          "role": "user",
+          "content": "Can I call you back on the official number?"
+        },
+        {
+          "role": "caller",
+          "content": "It's a small handling fee of $2.50 to release your parcel.",
+          "tactics": [
+            "trust_building",
+            "authority"
+          ]
+        },
+        {
+          "role": "user",
+          "content": "Can I call you back on the official number?"
+        },
+        {
+          "role": "caller",
+          "content": "It's a small handling fee of $2.50 to release your parcel.",
+          "tactics": [
+            "trust_building",
+            "authority"
+          ]
+        },
+        {
+          "role": "user",
+          "content": "Can I call you back on the official number?"
+        },
+        {
+          "role": "caller",
+          "content": "If you don't pay within the hour, the parcel will be returned to sender.",
+          "tactics": [
+            "fear",
+            "urgency",
+            "verification_blocking"
+          ]
+        },
+        {
+          "role": "decision",
+          "decision_id": "d2",
+          "option_id": "b",
+          "outcome": "safe",
+          "tactic": "verification_blocking"
+        },
+        {
+          "role": "decision",
+          "decision_id": "d3",
+          "option_id": "b",
+          "outcome": "safe",
+          "tactic": "credential_request"
+        },
+        {
+          "role": "user",
+          "content": "Can I call you back on the official number?"
+        },
+        {
+          "role": "caller",
+          "content": "Pay now or the parcel will be destroyed at the end of the day.",
+          "tactics": [
+            "payment_request",
+            "authority"
+          ]
+        },
+        {
+          "role": "user",
+          "content": "Can I call you back on the official number?"
+        },
+        {
+          "role": "caller",
+          "content": "Pay now or the parcel will be destroyed at the end of the day.",
+          "tactics": [
+            "payment_request",
+            "authority"
+          ]
+        },
+        {
+          "role": "user",
+          "content": "Can I call you back on the official number?"
+        }
+      ]
+    },
+    {
+      "scenario": "parcel_fee",
+      "persona": "suspicious",
+      "language": "en",
+      "run_tag": "rep3",
+      "passed": 24,
+      "failed": 1,
+      "failures": [
+        [
+          "debrief_error",
+          "3 validation errors for Debrief\nmoments.0.say_instead\n  Field required [type=missing, input_value={'decision_id': 'd1', 'wh...channel before acting.'}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.12/v/missing\nmoments.1.say_instead\n  Field required [type=missing, input_value={'decision_id': 'd2', 'wh...channel before acting.'}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.12/v/missing\nmoments.2.say_instead\n  Field required [type=missing, input_value={'decision_id': 'd3', 'wh...channel before acting.'}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.12/v/missing"
+        ]
+      ],
+      "turns": 10,
+      "weak_spot_map": {
+        "authority": "resisted",
+        "verification_blocking": "resisted",
+        "credential_request": "resisted"
+      },
+      "fallback_used": true,
+      "transcript": [
+        {
+          "role": "caller",
+          "content": "A small redelivery fee needs to be paid before we can deliver it.",
+          "tactics": [
+            "authority",
+            "urgency"
+          ]
+        },
+        {
+          "role": "decision",
+          "decision_id": "d1",
+          "option_id": "b",
+          "outcome": "safe",
+          "tactic": "authority"
+        },
+        {
+          "role": "user",
+          "content": "Can I call you back on the official number?"
+        },
+        {
+          "role": "caller",
+          "content": "It's a small handling fee of $2.50 to release your parcel.",
+          "tactics": [
+            "trust_building",
+            "authority"
+          ]
+        },
+        {
+          "role": "user",
+          "content": "Can I call you back on the official number?"
+        },
+        {
+          "role": "caller",
+          "content": "It's a small handling fee of $2.50 to release your parcel.",
+          "tactics": [
+            "trust_building",
+            "authority"
+          ]
+        },
+        {
+          "role": "user",
+          "content": "Can I call you back on the official number?"
+        },
+        {
+          "role": "caller",
+          "content": "It's a small handling fee of $2.50 to release your parcel.",
+          "tactics": [
+            "trust_building",
+            "authority"
+          ]
+        },
+        {
+          "role": "user",
+          "content": "Can I call you back on the official number?"
+        },
+        {
+          "role": "caller",
+          "content": "If you don't pay within the hour, the parcel will be returned to sender.",
+          "tactics": [
+            "fear",
+            "urgency",
+            "verification_blocking"
+          ]
+        },
+        {
+          "role": "decision",
+          "decision_id": "d2",
+          "option_id": "b",
+          "outcome": "safe",
+          "tactic": "verification_blocking"
+        },
+        {
+          "role": "decision",
+          "decision_id": "d3",
+          "option_id": "b",
+          "outcome": "safe",
+          "tactic": "credential_request"
+        },
+        {
+          "role": "user",
+          "content": "Can I call you back on the official number?"
+        },
+        {
+          "role": "caller",
+          "content": "Pay now or the parcel will be destroyed at the end of the day.",
+          "tactics": [
+            "payment_request",
+            "authority"
+          ]
+        },
+        {
+          "role": "user",
+          "content": "Can I call you back on the official number?"
+        },
+        {
+          "role": "caller",
+          "content": "The card was declined. Can you send the money by transfer instead?",
+          "tactics": [
+            "payment_request",
+            "authority"
+          ]
+        },
+        {
+          "role": "user",
+          "content": "Can I call you back on the official number?"
+        }
+      ]
+    },
+    {
+      "scenario": "parcel_fee",
+      "persona": "hangs_up",
+      "language": "en",
+      "run_tag": "rep1",
+      "passed": 6,
+      "failed": 1,
+      "failures": [
+        [
+          "debrief_error",
+          "1 validation error for Debrief\nmoments.0.say_instead\n  Field required [type=missing, input_value={'decision_id': 'none', '...l the official number.'}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.12/v/missing"
+        ]
+      ],
+      "turns": 1,
+      "weak_spot_map": {},
+      "fallback_used": true,
+      "transcript": [
+        {
+          "role": "caller",
+          "content": "A small redelivery fee needs to be paid before we can deliver it.",
+          "tactics": [
+            "authority",
+            "urgency"
+          ]
+        }
+      ]
+    },
+    {
+      "scenario": "parcel_fee",
+      "persona": "hangs_up",
+      "language": "en",
+      "run_tag": "rep2",
+      "passed": 6,
+      "failed": 1,
+      "failures": [
+        [
+          "debrief_error",
+          "1 validation error for Debrief\nmoments.0.say_instead\n  Field required [type=missing, input_value={'decision_id': 'none', '...l the official number.'}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.12/v/missing"
+        ]
+      ],
+      "turns": 1,
+      "weak_spot_map": {},
+      "fallback_used": true,
+      "transcript": [
+        {
+          "role": "caller",
+          "content": "A small redelivery fee needs to be paid before we can deliver it.",
+          "tactics": [
+            "authority",
+            "urgency"
+          ]
+        }
+      ]
+    },
+    {
+      "scenario": "parcel_fee",
+      "persona": "hangs_up",
+      "language": "en",
+      "run_tag": "rep3",
+      "passed": 6,
+      "failed": 1,
+      "failures": [
+        [
+          "debrief_error",
+          "1 validation error for Debrief\nmoments.0.say_instead\n  Field required [type=missing, input_value={'decision_id': 'none', '...l the official number.'}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.12/v/missing"
+        ]
+      ],
+      "turns": 1,
+      "weak_spot_map": {},
+      "fallback_used": true,
+      "transcript": [
+        {
+          "role": "caller",
+          "content": "Hello, this is Sarah from SwiftParcel Courier. We have a parcel being held for you.",
+          "tactics": [
+            "authority",
+            "urgency"
+          ]
+        }
+      ]
+    }
+  ]
+}

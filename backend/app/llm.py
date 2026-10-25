@@ -166,6 +166,8 @@ def generate_caller_line(
 
     Failure categories logged: empty, parse_error, subset_violation,
     output_filter_rejection, rate_limit, timeout, api_error.
+
+    Constraint: do not write numbers longer than 3 digits or phone numbers.
     """
     from .guardrails import output_safe
 
@@ -331,7 +333,34 @@ def generate_debrief(
     )
     raw = completion.choices[0].message.content or ""
     raw = _strip_code_fences(raw)
-    data = json.loads(raw)
+
+    # Determine failure category
+    fail_category = None
+    if completion.choices[0].finish_reason == "length":
+        fail_category = "empty"  # model burned budget, returned empty content
+    elif completion.choices[0].finish_reason == "output_filter":
+        fail_category = "output_filter_rejection"
+    elif completion.choices[0].finish_reason is None:
+        fail_category = "parse_error"  # no finish reason typically means model didn't comply
+
+    try:
+        data = json.loads(raw)
+    except json.JSONDecodeError:
+        data = {}
+        fail_category = "parse_error" if not fail_category else fail_category
+
+    # Log the call
+    call_log.append({
+        "function": "generate_debrief",
+        "model": model,
+        "temperature": temperature,
+        "max_tokens": max_tokens,
+        "finish_reason": completion.choices[0].finish_reason,
+        "failure_category": fail_category,
+        "raw_content_length": len(raw),
+        "latency_ms": int((completion.created - completion.model_creation) * 1000) if hasattr(completion, 'created') else None,
+    })
+
     return Debrief(**data)
 
 

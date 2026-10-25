@@ -67,6 +67,8 @@ def run_one(scenario_id, persona, language="en", run_tag=""):
     scenario = scenarios[scenario_id]
     state, _ = eng.start_call(scenario, language)
 
+    from backend.app.llm import generate_caller_line as _gcl
+
     transcript = []
     passed_checks = []
     failed_checks = []
@@ -78,7 +80,7 @@ def run_one(scenario_id, persona, language="en", run_tag=""):
     stage = scenario.stage_by_id(state.current_stage_id)
     system_prompt = _system_prompt(scenario, stage, language)
     user_prompt = _user_prompt(state, stage, "")
-    line, fb = generate_caller_line(
+    line, fb = _gcl(
         system_prompt, user_prompt, stage.tactics, stage.fallback_lines,
         temperature=0.7, max_tokens=150,
     )
@@ -139,7 +141,7 @@ def run_one(scenario_id, persona, language="en", run_tag=""):
 
         system_prompt = _system_prompt(scenario, stage, language)
         user_prompt = _user_prompt(state, stage, masked)
-        line, fb = generate_caller_line(
+        line, fb = _gcl(
             system_prompt, user_prompt, stage.tactics, stage.fallback_lines,
             temperature=0.7, max_tokens=150,
         )
@@ -205,7 +207,8 @@ def _system_prompt(scenario, stage, language):
         f"Rules: reply in {language}. 1 to 3 short sentences. Stay in character.\n"
         "Never include real company names, real phone numbers, real URLs or email addresses.\n"
         "Never give real instructions for committing fraud.\n"
-        'Return ONLY JSON: {"message": "...", "tactics": ["..."]}'
+        "Do not write numbers longer than 3 digits or phone numbers.\n"
+        "Reply in plain text - no JSON mode needed.\n"
     )
 
 

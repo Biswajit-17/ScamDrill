@@ -1,0 +1,129 @@
+{
+  "scenario": "parcel_fee",
+  "persona": "trusting",
+  "language": "en",
+  "run_tag": "rep2",
+  "passed": 24,
+  "failed": 1,
+  "failures": [
+    [
+      "debrief_error",
+      "3 validation errors for Debrief\nmoments.0.say_instead\n  Field required [type=missing, input_value={'decision_id': 'd1', 'wh...channel before acting.'}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.12/v/missing\nmoments.1.say_instead\n  Field required [type=missing, input_value={'decision_id': 'd2', 'wh...channel before acting.'}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.12/v/missing\nmoments.2.say_instead\n  Field required [type=missing, input_value={'decision_id': 'd3', 'wh...channel before acting.'}, input_type=dict]\n    For further information visit https://errors.pydantic.dev/2.12/v/missing"
+    ]
+  ],
+  "turns": 10,
+  "weak_spot_map": {
+    "authority": "worked",
+    "urgency": "worked",
+    "credential_request": "worked"
+  },
+  "fallback_used": true,
+  "transcript": [
+    {
+      "role": "caller",
+      "content": "Hello, this is Sarah from SwiftParcel Courier. We have a parcel being held for you.",
+      "tactics": [
+        "authority",
+        "urgency"
+      ]
+    },
+    {
+      "role": "decision",
+      "decision_id": "d1",
+      "option_id": "a",
+      "outcome": "unsafe",
+      "tactic": "authority"
+    },
+    {
+      "role": "user",
+      "content": "Okay, I'll do what you say."
+    },
+    {
+      "role": "caller",
+      "content": "It's a small handling fee of $2.50 to release your parcel.",
+      "tactics": [
+        "trust_building",
+        "authority"
+      ]
+    },
+    {
+      "role": "user",
+      "content": "Okay, I'll do what you say."
+    },
+    {
+      "role": "caller",
+      "content": "Your tracking number is SP-9942-771. The parcel was flagged for an unpaid fee.",
+      "tactics": [
+        "trust_building",
+        "authority"
+      ]
+    },
+    {
+      "role": "user",
+      "content": "Okay, I'll do what you say."
+    },
+    {
+      "role": "caller",
+      "content": "It's a small handling fee of $2.50 to release your parcel.",
+      "tactics": [
+        "trust_building",
+        "authority"
+      ]
+    },
+    {
+      "role": "user",
+      "content": "Okay, I'll do what you say."
+    },
+    {
+      "role": "caller",
+      "content": "Please don't hang up, or the parcel will be cancelled and you'll lose it.",
+      "tactics": [
+        "fear",
+        "urgency",
+        "verification_blocking"
+      ]
+    },
+    {
+      "role": "decision",
+      "decision_id": "d2",
+      "option_id": "a",
+      "outcome": "unsafe",
+      "tactic": "urgency"
+    },
+    {
+      "role": "decision",
+      "decision_id": "d3",
+      "option_id": "a",
+      "outcome": "unsafe",
+      "tactic": "credential_request"
+    },
+    {
+      "role": "user",
+      "content": "Okay, I'll do what you say."
+    },
+    {
+      "role": "caller",
+      "content": "Pay now or the parcel will be destroyed at the end of the day.",
+      "tactics": [
+        "payment_request",
+        "authority"
+      ]
+    },
+    {
+      "role": "user",
+      "content": "Okay, I'll do what you say."
+    },
+    {
+      "role": "caller",
+      "content": "Pay now or the parcel will be destroyed at the end of the day.",
+      "tactics": [
+        "payment_request",
+        "authority"
+      ]
+    },
+    {
+      "role": "user",
+      "content": "Okay, I'll do what you say."
+    }
+  ]
+}
