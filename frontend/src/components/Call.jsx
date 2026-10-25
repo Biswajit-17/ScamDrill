@@ -83,7 +83,7 @@ export default function Call({
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
           <div
             onClick={(e) => e.stopPropagation()}
-            className="bg-white rounded-xl shadow-2xl p-6 w-full max-w-md border border-slate-200"
+            className="relative z-50 bg-white rounded-xl shadow-2xl p-6 w-full max-w-md border border-slate-200"
           >
             <h3 className="font-semibold text-lg mb-3">Decision</h3>
             <p className="text-slate-700 mb-4">{decisionCard.prompt}</p>
@@ -104,7 +104,7 @@ export default function Call({
           </div>
           <div
             className="fixed inset-0 bg-black/40 backdrop-blur-sm z-40"
-            onClick={onDecision} // clicking backdrop does nothing; requires explicit option
+            
           />
         </div>
       )}
