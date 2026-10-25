@@ -18,7 +18,7 @@ from .llm import generate_debrief, get_call_log, clear_call_log
 
 
 def _extract_say_instead(lines: list[str]) -> list[str]:
-    """Return non-empty say_ininstead lines from the model output."""
+    """Return non-empty say_instead lines from the model output."""
     result: list[str] = []
     for line in lines:
         line = line.strip()
@@ -87,13 +87,13 @@ def _static_debrief(scenario: Scenario, state: CallState) -> Debrief:
         moments.append({
             "decision_id": decision_id,
             "what_happened": what,
-            "say_ininstead": say,
+            "say_instead": say,
         })
     if not moments:
         moments.append({
             "decision_id": "none",
             "what_happened": "No decisions were recorded during the call.",
-            "say_ininstead": "If you ever get a real suspicious call, hang up and call the official number.",
+            "say_instead": "If you ever get a real suspicious call, hang up and call the official number.",
         })
     summary = f"Debrief for {scenario.title}. You made {len(state.decisions_taken)} decision(s). Review each moment and what to say instead next time."
     return Debrief(summary=summary, moments=moments, rules=rules)
@@ -104,7 +104,7 @@ def generate_debrief_with_fallback(
 ) -> DebriefResponse:
     """Generate the debrief, with a static fallback so it always renders."""
     system_prompt = (
-        "You are a calm coach. Using ONLY the JSON below, write a short debrief in "
+        "You are a calm coach. Reply in plain text - no JSON mode needed, write a short debrief in "
         f"{language}. Do not invent events. Do not mention anything not in the data. "
         "Return ONLY JSON: {\"summary\": \"<=60 words\", \"moments\": "
         "[{\"decision_id\": \"...\", \"what_happened\": \"...\", \"say_instead\": \"...\"}], "
@@ -126,3 +126,4 @@ def generate_debrief_with_fallback(
         weak_spot_map=dict(state.weak_spot_map),
         fallback_used=fallback_used,
     )
+

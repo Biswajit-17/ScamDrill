@@ -98,6 +98,7 @@ def _rate_limit_ok(request: Request) -> bool:
         return False
     window.append(now)
     _daily_calls += 1
+    return True
 
 
 # ---------------------------------------------------------------------------
@@ -116,7 +117,7 @@ def _build_caller_system_prompt(scenario: Scenario, stage: Stage, language: str)
         f"Rules: reply in {language}. 1 to 3 short sentences. Stay in character.\n"
         "Never include real company names, real phone numbers, real URLs or email addresses.\n"
         "Never give real instructions for committing fraud.\n"
-        'Return ONLY JSON: {"message": "...", "tactics": ["..."]}'
+        'Reply with ONLY the words the caller says out loud: plain text, no JSON, no quotation marks, no stage directions.'
     )
 
 
@@ -202,12 +203,12 @@ def call_start(req: CallStartRequest, request: Request):
         stage_tactics=stage.tactics,
         fallback_lines=stage.fallback_lines,
         temperature=0.7,
-        max_tokens=150,
+        max_tokens=1000,
     )
     state.fallback_used = fb_used
 
     message, tactics, fb2 = _apply_output_filter(
-        line.message, line.tactics, stage.fallback_lines
+        line.message.strip(), line.tactics, stage.fallback_lines
     )
     if fb2:
         state.fallback_used = True
@@ -299,12 +300,12 @@ def call_turn(req: CallTurnRequest, request: Request):
         stage_tactics=stage.tactics,
         fallback_lines=stage.fallback_lines,
         temperature=0.7,
-        max_tokens=150,
+        max_tokens=1000,
     )
     state.fallback_used = state.fallback_used or fb_used
 
     message, tactics, fb2 = _apply_output_filter(
-        line.message, line.tactics, stage.fallback_lines
+        line.message.strip(), line.tactics, stage.fallback_lines
     )
     if fb2:
         state.fallback_used = True
@@ -351,3 +352,6 @@ def call_debrief(req: DebriefRequest, request: Request):
     return deb.generate_debrief_with_fallback(
         scenario, req.state, language=req.state.language
     )
+
+
+

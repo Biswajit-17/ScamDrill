@@ -15,6 +15,9 @@ import time
 import random
 from typing import Optional
 
+from dotenv import load_dotenv
+load_dotenv()
+
 from openai import OpenAI
 from openai import RateLimitError, APIError, APITimeoutError
 
