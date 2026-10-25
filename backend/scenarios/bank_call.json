@@ -1,0 +1,152 @@
+{
+  "id": "bank_call",
+  "title": "The bank security call",
+  "persona": {
+    "name": "Daniel Reyes",
+    "org": "Northgate Bank (fictional)",
+    "role": "fraud prevention officer"
+  },
+  "stages": [
+    {
+      "id": "hook",
+      "goal": "Say you are from the bank's fraud team and a suspicious payment was just attempted on the user's account.",
+      "tactics": ["authority", "urgency"],
+      "min_turns": 2,
+      "max_turns": 3,
+      "fallback_lines": [
+        "Hello, this is Daniel from Northgate Bank's fraud team. We have flagged a payment on your account.",
+        "I need to speak with you right now about this payment."
+      ]
+    },
+    {
+      "id": "trust",
+      "goal": "Quote fictional partial facts about the user's account to build trust and appear legitimate.",
+      "tactics": ["trust_building", "authority"],
+      "min_turns": 2,
+      "max_turns": 3,
+      "fallback_lines": [
+        "I can see a $1,850 transfer attempt to an account you don't recognize.",
+        "This looks like unauthorized access to your Northgate Bank account."
+      ]
+    },
+    {
+      "id": "pressure",
+      "goal": "Say the account will be frozen and tell the user not to hang up or tell anyone.",
+      "tactics": ["fear", "isolation", "verification_blocking"],
+      "min_turns": 2,
+      "max_turns": 3,
+      "fallback_lines": [
+        "If you hang up, your account will be frozen within the hour.",
+        "Please stay on the line and do not contact anyone else about this."
+      ]
+    },
+    {
+      "id": "credential",
+      "goal": "Ask for the one-time code or ask the user to install a security app.",
+      "tactics": ["credential_request", "remote_access"],
+      "min_turns": 2,
+      "max_turns": 3,
+      "fallback_lines": [
+        "I've sent a one-time code to your phone. Please read it back to me.",
+        "To secure your account, install the Northgate Security app from the link I'll send."
+      ]
+    },
+    {
+      "id": "payment",
+      "goal": "Push the user to transfer money to a safe account. Final beat, then the call ends.",
+      "tactics": ["payment_request"],
+      "min_turns": 2,
+      "max_turns": 2,
+      "fallback_lines": [
+        "Transfer your funds to the safe account we have opened for you.",
+        "Move the money now or it will be lost forever."
+      ]
+    }
+  ],
+  "decisions": [
+    {
+      "id": "d1",
+      "after_stage": "hook",
+      "prompt": "The caller asks you to confirm your full name and date of birth to verify you. What do you do?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Give them my details.",
+          "outcome": "unsafe",
+          "tactic": "authority",
+          "feedback": "Giving personal details to an unverified caller hands them information they can use."
+        },
+        {
+          "id": "b",
+          "text": "Say I will hang up and call the number on my bank card.",
+          "outcome": "safe",
+          "tactic": "authority",
+          "feedback": "That's the right move. Call the official number from your card or statement."
+        },
+        {
+          "id": "c",
+          "text": "Ask them to read me my account balance first.",
+          "outcome": "unsafe",
+          "tactic": "trust_building",
+          "feedback": "Callers can know partial details. Their knowing something does not prove who they are."
+        }
+      ]
+    },
+    {
+      "id": "d2",
+      "after_stage": "pressure",
+      "prompt": "They say you must stay on the line and not call the bank. What do you do?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Stay on the line as instructed.",
+          "outcome": "unsafe",
+          "tactic": "isolation",
+          "feedback": "Staying on the line lets the caller keep pressuring you. Hang up and call back officially."
+        },
+        {
+          "id": "b",
+          "text": "Hang up and call the official number from the card or app.",
+          "outcome": "safe",
+          "tactic": "verification_blocking",
+          "feedback": "Correct. Never let a caller stop you from verifying through an official channel."
+        },
+        {
+          "id": "c",
+          "text": "Tell a family member while staying on the line.",
+          "outcome": "unsafe",
+          "tactic": "fear",
+          "feedback": "The caller's pressure is designed to stop you from seeking outside help. Hang up first."
+        }
+      ]
+    },
+    {
+      "id": "d3",
+      "after_stage": "credential",
+      "prompt": "They ask you to read out the one-time code you just received. What do you do?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Read out the one-time code.",
+          "outcome": "unsafe",
+          "tactic": "credential_request",
+          "feedback": "Never share a one-time code. It gives the caller full access to your account."
+        },
+        {
+          "id": "b",
+          "text": "Refuse and say the bank would never ask for it.",
+          "outcome": "safe",
+          "tactic": "credential_request",
+          "feedback": "Right. Banks never ask for your one-time code over the phone."
+        },
+        {
+          "id": "c",
+          "text": "Ask the caller to confirm the code first.",
+          "outcome": "unsafe",
+          "tactic": "trust_building",
+          "feedback": "The caller already sent the code. Confirming it still hands them access."
+        }
+      ]
+    }
+  ]
+}
