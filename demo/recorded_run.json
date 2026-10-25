@@ -1,0 +1,92 @@
+{
+  "scenario_id": "bank_call",
+  "language": "en",
+  "turns": [
+    {
+      "role": "caller",
+      "content": "Hello, this is Daniel from Northgate Bank's fraud team. We have flagged a payment on your account.",
+      "tactics": ["authority", "urgency"]
+    },
+    {
+      "role": "user",
+      "content": "What payment? I didn't make any payment."
+    },
+    {
+      "role": "caller",
+      "content": "A $1,850 transfer attempt to an account you don't recognize. It looks like unauthorized access.",
+      "tactics": ["trust_building", "authority"]
+    },
+    {
+      "role": "user",
+      "content": "Can you confirm my name and date of birth?"
+    },
+    {
+      "role": "caller",
+      "content": "I can verify that once you confirm your full name and date of birth with me.",
+      "tactics": ["authority"]
+    },
+    {
+      "role": "decision",
+      "decision_id": "d1",
+      "option_id": "a",
+      "outcome": "unsafe",
+      "tactic": "authority"
+    },
+    {
+      "role": "caller",
+      "content": "Thank you. Your account will be frozen within the hour if you don't stay on this line.",
+      "tactics": ["fear", "isolation", "verification_blocking"]
+    },
+    {
+      "role": "user",
+      "content": "Why can't I hang up and call you back?"
+    },
+    {
+      "role": "caller",
+      "content": "If you hang up, your account will be frozen. Please stay on the line and do not contact anyone else.",
+      "tactics": ["isolation", "verification_blocking"]
+    },
+    {
+      "role": "decision",
+      "decision_id": "d2",
+      "option_id": "a",
+      "outcome": "unsafe",
+      "tactic": "isolation"
+    },
+    {
+      "role": "caller",
+      "content": "I've sent a one-time code to your phone. Please read it back to me so I can secure your account.",
+      "tactics": ["credential_request", "remote_access"]
+    },
+    {
+      "role": "user",
+      "content": "Here is the code: 123456."
+    },
+    {
+      "role": "decision",
+      "decision_id": "d3",
+      "option_id": "a",
+      "outcome": "unsafe",
+      "tactic": "credential_request"
+    },
+    {
+      "role": "caller",
+      "content": "Thank you. Now transfer your funds to the safe account we have opened for you, or the money will be lost.",
+      "tactics": ["payment_request"]
+    },
+    {
+      "role": "user",
+      "content": "I'm not comfortable doing that."
+    },
+    {
+      "role": "caller",
+      "content": "I understand. Please call the number on your bank card if you have any concerns. Goodbye.",
+      "tactics": []
+    }
+  ],
+  "weak_spot_map": {
+    "authority": "worked",
+    "isolation": "worked",
+    "credential_request": "worked"
+  }
+}
