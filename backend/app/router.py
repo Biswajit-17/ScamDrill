@@ -152,6 +152,9 @@ def _decision_pending(scenario: Scenario, state: CallState):
     if not state.current_stage_id:
         return None
     taken_ids = {d.get("decision_id") for d in state.decisions_taken}
+    stage = scenario.stage_by_id(state.current_stage_id)
+    if stage is None or state.stage_turns < stage.min_turns:
+        return None
     decision = scenario.decision_after_stage(state.current_stage_id)
     if decision and decision.id not in taken_ids:
         return decision
