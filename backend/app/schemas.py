@@ -159,6 +159,7 @@ class CallStartRequest(BaseModel):
 class CallStartResponse(BaseModel):
     caller_line: str
     tactics: List[str]
+    state: Optional[CallState] = None
     stage: str
     stage_turns: int
     decision_card: Optional[dict] = None
@@ -173,6 +174,7 @@ class CallTurnRequest(BaseModel):
 class CallTurnResponse(BaseModel):
     caller_line: str
     tactics: List[str]
+    state: Optional[CallState] = None
     stage: str
     stage_turns: int
     decision_card: Optional[dict] = None

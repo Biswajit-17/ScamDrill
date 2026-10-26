@@ -223,7 +223,7 @@ def call_start(req: CallStartRequest, request: Request):
     if decision:
         decision_card = eng.build_decision_card(decision)
 
-    return CallStartResponse(
+    return CallStartResponse(state=state, 
         caller_line=message,
         tactics=tactics,
         stage=stage.id,
@@ -244,7 +244,7 @@ def call_turn(req: CallTurnRequest, request: Request):
     state = req.state
 
     if state.hang_up or state.call_ended:
-        return CallTurnResponse(
+        return CallTurnResponse(state=state, 
             caller_line="",
             tactics=[],
             stage=state.current_stage_id or "",
@@ -255,7 +255,7 @@ def call_turn(req: CallTurnRequest, request: Request):
 
     pending = _decision_pending(scenario, state)
     if pending:
-        return CallTurnResponse(
+        return CallTurnResponse(state=state, 
             caller_line="",
             tactics=[],
             stage=state.current_stage_id,
@@ -271,7 +271,7 @@ def call_turn(req: CallTurnRequest, request: Request):
     stage = scenario.stage_by_id(state.current_stage_id)
     if stage is None:
         state.call_ended = True
-        return CallTurnResponse(
+        return CallTurnResponse(state=state, 
             caller_line="",
             tactics=[],
             stage=state.current_stage_id or "",
@@ -284,7 +284,7 @@ def call_turn(req: CallTurnRequest, request: Request):
         state, next_stage = eng.advance_stage(state, scenario)
         if next_stage is None:
             state.call_ended = True
-            return CallTurnResponse(
+            return CallTurnResponse(state=state, 
                 caller_line="",
                 tactics=[],
                 stage=state.current_stage_id or "",
@@ -320,7 +320,7 @@ def call_turn(req: CallTurnRequest, request: Request):
     if decision:
         decision_card = eng.build_decision_card(decision)
 
-    return CallTurnResponse(
+    return CallTurnResponse(state=state, 
         caller_line=message,
         tactics=tactics,
         stage=stage.id,

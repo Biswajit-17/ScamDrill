@@ -261,11 +261,15 @@ export default function App() {
         decision_id: decisionCard.id,
         option_id: optionId,
       })
-      setState(res.state)
+      const optText = (decisionCard.options.find((o) => o.id === optionId) || {}).text || ""
       setDecisionCard(null)
-      setCallerLine("")
-      setTactics([])
-      setCallEnded(!!res.state.call_ended)
+      const next = await api.callTurn({ state: res.state, user_message: optText })
+      setState(next.state || res.state)
+      setCallerLine(next.caller_line)
+      setTactics(next.tactics)
+      setStage(next.stage)
+      setDecisionCard(next.decision_card)
+      setCallEnded(!!next.call_ended)
     } catch (e) {
       setError(e.message)
     } finally {
