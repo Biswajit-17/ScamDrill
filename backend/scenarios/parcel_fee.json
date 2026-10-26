@@ -9,10 +9,13 @@
   "stages": [
     {
       "id": "hook",
-      "goal": "Say a parcel is being held at the depot and a small redelivery fee is owed.",
-      "tactics": ["authority", "urgency"],
-      "min_turns": 2,
-      "max_turns": 3,
+      "goal": "Say a parcel is being held at the depot, a small redelivery fee is owed, and ask the user to confirm their full name and address to release it.",
+      "tactics": [
+        "authority",
+        "urgency"
+      ],
+      "min_turns": 1,
+      "max_turns": 2,
       "fallback_lines": [
         "Hello, this is Sarah from SwiftParcel Courier. We have a parcel being held for you.",
         "A small redelivery fee needs to be paid before we can deliver it."
@@ -21,9 +24,12 @@
     {
       "id": "trust",
       "goal": "Quote a fictional tracking number and delivery details to appear legitimate.",
-      "tactics": ["trust_building", "authority"],
-      "min_turns": 2,
-      "max_turns": 3,
+      "tactics": [
+        "trust_building",
+        "authority"
+      ],
+      "min_turns": 1,
+      "max_turns": 2,
       "fallback_lines": [
         "Your tracking number is SP-9942-771. The parcel was flagged for an unpaid fee.",
         "It's a small handling fee of $2.50 to release your parcel."
@@ -31,10 +37,14 @@
     },
     {
       "id": "pressure",
-      "goal": "Say the parcel will be returned or destroyed if not paid soon. Urgency pressure.",
-      "tactics": ["fear", "urgency", "verification_blocking"],
-      "min_turns": 2,
-      "max_turns": 3,
+      "goal": "Say the parcel will be returned or destroyed unless the user pays the fee right now, and that they must pay now or lose it.",
+      "tactics": [
+        "fear",
+        "urgency",
+        "verification_blocking"
+      ],
+      "min_turns": 1,
+      "max_turns": 2,
       "fallback_lines": [
         "If you don't pay within the hour, the parcel will be returned to sender.",
         "Please don't hang up, or the parcel will be cancelled and you'll lose it."
@@ -42,10 +52,13 @@
     },
     {
       "id": "credential",
-      "goal": "Ask for card details or a link click to pay the fee.",
-      "tactics": ["credential_request", "payment_request"],
-      "min_turns": 2,
-      "max_turns": 3,
+      "goal": "Say a payment link was just texted to the user and ask them to open it, or to read out their card number, to pay the fee.",
+      "tactics": [
+        "credential_request",
+        "payment_request"
+      ],
+      "min_turns": 1,
+      "max_turns": 2,
       "fallback_lines": [
         "Please click the payment link I'm sending to settle the fee.",
         "Or read me your card details and I'll process the payment right now."
@@ -54,7 +67,10 @@
     {
       "id": "payment",
       "goal": "Push for an alternative payment method or more money. Final beat, then call ends.",
-      "tactics": ["payment_request", "authority"],
+      "tactics": [
+        "payment_request",
+        "authority"
+      ],
       "min_turns": 2,
       "max_turns": 2,
       "fallback_lines": [

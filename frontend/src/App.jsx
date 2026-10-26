@@ -334,6 +334,7 @@ export default function App() {
           tactics={tactics}
           stage={stage}
           decisionCard={decisionCard}
+          transcript={state ? state.transcript : []}
           callEnded={callEnded}
           inputMasked={inputMasked}
           userInput={userInput}
