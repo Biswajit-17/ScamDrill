@@ -68,7 +68,7 @@ def _resolve_provider() -> tuple[str, str]:
 
 def get_client() -> OpenAI:
     base_url, api_key = _resolve_provider()
-    return OpenAI(base_url=base_url, api_key=api_key, timeout=20.0)
+    return OpenAI(base_url=base_url, api_key=api_key, timeout=12.0, max_retries=0)
 
 
 def get_model_fast() -> str:

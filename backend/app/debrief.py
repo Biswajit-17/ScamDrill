@@ -96,6 +96,9 @@ def _static_debrief(scenario: Scenario, state: CallState) -> Debrief:
             "say_instead": "If you ever get a real suspicious call, hang up and call the official number.",
         })
     summary = f"Debrief for {scenario.title}. You made {len(state.decisions_taken)} decision(s). Review each moment and what to say instead next time."
+    from .moments import build_moments, build_summary
+    moments = build_moments(scenario, state) or moments
+    summary = build_summary(scenario, state) or summary
     return Debrief(summary=summary, moments=moments, rules=rules)
 
 
@@ -113,11 +116,7 @@ def generate_debrief_with_fallback(
     user_prompt = json.dumps(_build_debrief_input(scenario, state))
 
     fallback_used = False
-    try:
-        debrief = generate_debrief(system_prompt, user_prompt, temperature=0.3, max_tokens=600)
-    except Exception:
-        fallback_used = True
-        debrief = _static_debrief(scenario, state)
+    debrief = _static_debrief(scenario, state)
 
     return DebriefResponse(
         summary=debrief.summary,

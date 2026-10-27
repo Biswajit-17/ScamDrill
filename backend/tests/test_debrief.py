@@ -43,12 +43,12 @@ def test_static_debrief_no_decisions():
     assert d.rules
 
 
-def test_generate_debrief_with_fallback_uses_static_on_error():
-    # Without API keys, generate_debrief will raise -> fallback to static.
+def test_generate_debrief_is_built_from_authored_content():
+    # The debrief is built from authored scenario data and makes no model call.
     s, state = _state_with_decisions()
     resp = generate_debrief_with_fallback(s, state, language="en")
     assert resp.summary
-    assert resp.fallback_used is True  # no API key configured
+    assert resp.fallback_used is False
     assert resp.weak_spot_map == {"authority": "worked", "isolation": "resisted"}
     assert len(resp.moments) == 2
     assert len(resp.rules) == 3

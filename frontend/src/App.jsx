@@ -279,7 +279,7 @@ export default function App() {
 
   const handleHangUp = () => {
     setCallEnded(true)
-    setScreen(SCREENS.DEBRIEF)
+    goDebrief()
   }
 
   // ---- Debrief ----
