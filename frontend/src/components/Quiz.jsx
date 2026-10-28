@@ -1,3 +1,5 @@
+import { useState } from "react"
+
 export default function Quiz({
   questions,
   index,
@@ -13,6 +15,9 @@ export default function Quiz({
   onStartCall,
   onHome,
 }) {
+  const [seed] = useState(() => String(Math.random()))
+  const hash = (s) => { let h = 0; for (let i = 0; i < s.length; i++) h = (h * 31 + s.charCodeAt(i)) | 0; return h }
+  const shuffled = (qq) => [...qq.options].sort((a, b) => hash(qq.id + a.id + seed) - hash(qq.id + b.id + seed))
   const total = questions.length
   const textOf = (q, id) => (q.options.find((o) => o.id === id) || {}).text
 
@@ -100,7 +105,7 @@ export default function Quiz({
       <div className="bg-white rounded-xl shadow-sm border border-slate-200 p-6 mb-6">
         <h2 className="text-lg font-semibold mb-4">{q.question}</h2>
         <div className="space-y-3">
-          {q.options.map((opt) => {
+          {shuffled(q).map((opt) => {
             let cls = "bg-white border-slate-200 text-slate-700 hover:bg-slate-50"
             if (picked) {
               if (opt.id === q.correct) cls = "bg-green-50 border-green-300 text-green-800"

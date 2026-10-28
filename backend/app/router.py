@@ -124,6 +124,8 @@ def _build_caller_system_prompt(scenario: Scenario, stage: Stage, language: str)
 
 
 def _build_caller_user_prompt(state: CallState, stage: Stage, user_message: str) -> str:
+    if not user_message.strip():
+        return "The call is just starting and the user has not spoken yet. Say your opening line as the caller: introduce yourself in character, then move toward the stage goal."
     transcript_lines = []
     for e in state.transcript[-8:]:
         tag = "Caller" if e.role == "caller" else "User"
@@ -321,6 +323,9 @@ def call_turn(req: CallTurnRequest, request: Request):
     decision_card = None
     if decision:
         decision_card = eng.build_decision_card(decision)
+
+    if stage.id == scenario.stages[-1].id and state.stage_turns >= stage.max_turns:
+        state.call_ended = True
 
     return CallTurnResponse(state=state, 
         caller_line=message,
