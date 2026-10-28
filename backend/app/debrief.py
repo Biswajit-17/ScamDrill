@@ -96,9 +96,10 @@ def _static_debrief(scenario: Scenario, state: CallState) -> Debrief:
             "say_instead": "If you ever get a real suspicious call, hang up and call the official number.",
         })
     summary = f"Debrief for {scenario.title}. You made {len(state.decisions_taken)} decision(s). Review each moment and what to say instead next time."
-    from .moments import build_moments, build_summary
+    from .moments import build_moments, build_rules, build_summary
     moments = build_moments(scenario, state) or moments
     summary = build_summary(scenario, state) or summary
+    rules = build_rules(scenario) or rules
     return Debrief(summary=summary, moments=moments, rules=rules)
 
 

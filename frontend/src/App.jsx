@@ -164,39 +164,49 @@ export default function App() {
   ]
 
   const quizQuestions = isPreQuiz ? QUIZ_PRE : QUIZ_POST
+  const [quizDone, setQuizDone] = useState(false)
+  const [preTaken, setPreTaken] = useState(false)
+
+  const scoreQuiz = (qs, answers) => qs.filter((q) => answers[q.id] === q.correct).length
 
   const startQuiz = () => {
     setIsPreQuiz(true)
     setQuizIndex(0)
     setQuizAnswers({})
+    setQuizDone(false)
+    setPreTaken(false)
     setQuizScore({ pre: 0, post: 0 })
     setScreen(SCREENS.QUIZ)
   }
 
-  const answerQuiz = (optionId) => {
+  const startPostQuiz = () => {
+    setIsPreQuiz(false)
+    setQuizIndex(0)
+    setQuizAnswers({})
+    setQuizDone(false)
+    setScreen(SCREENS.QUIZ)
+  }
+
+  const pickQuizAnswer = (optionId) => {
     const q = quizQuestions[quizIndex]
-    const next = { ...quizAnswers, [q.id]: optionId }
-    setQuizAnswers(next)
+    if (quizAnswers[q.id]) return
+    setQuizAnswers({ ...quizAnswers, [q.id]: optionId })
+  }
+
+  const nextQuizQuestion = () => {
     if (quizIndex + 1 >= quizQuestions.length) {
-      let score = 0
-      quizQuestions.forEach((qq) => {
-        const answered = quizAnswers[qq.id] !== undefined ? quizAnswers[qq.id] : (qq.id === q.id ? optionId : null)
-        if (answered === qq.correct) score++
-      })
+      const score = scoreQuiz(quizQuestions, quizAnswers)
       if (isPreQuiz) {
         setQuizScore({ ...quizScore, pre: score })
-        setIsPreQuiz(false)
-        setQuizIndex(0)
-        setQuizAnswers({})
+        setPreTaken(true)
       } else {
         setQuizScore({ ...quizScore, post: score })
-        setScreen(SCREENS.HOME)
       }
+      setQuizDone(true)
     } else {
       setQuizIndex(quizIndex + 1)
     }
   }
-
   // ---- Call ----
   const startCall = async (scenarioId, language = "en") => {
     setLoading(true)
@@ -325,7 +335,15 @@ export default function App() {
           index={quizIndex}
           answers={quizAnswers}
           isPreQuiz={isPreQuiz}
-          onAnswer={answerQuiz}
+          done={quizDone}
+          score={isPreQuiz ? quizScore.pre : quizScore.post}
+          preScore={quizScore.pre}
+          preTaken={preTaken}
+          scenarios={scenarios}
+          onAnswer={pickQuizAnswer}
+          onNext={nextQuizQuestion}
+          onStartCall={startCall}
+          onHome={() => setScreen(SCREENS.HOME)}
         />
       )}
       {screen === SCREENS.CALL && (
@@ -353,6 +371,7 @@ export default function App() {
           onGoDebrief={goDebrief}
           onShare={buildShare}
           onRestart={() => setScreen(SCREENS.HOME)}
+          onPostQuiz={startPostQuiz}
         />
       )}
       {screen === SCREENS.SHARE && (

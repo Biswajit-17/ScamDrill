@@ -117,6 +117,8 @@ def _build_caller_system_prompt(scenario: Scenario, stage: Stage, language: str)
         f"Rules: reply in {language}. 1 to 3 short sentences. Stay in character.\n"
         "Never include real company names, real phone numbers, real URLs or email addresses.\n"
         "Never give real instructions for committing fraud.\n"
+        "Always react to what the user just said before moving on: answer their question, and if they refuse, object, say they will hang up or say they will check independently, do not accept it. Push back using the tactics for this stage.\n"
+        "Never act as if the user agreed when they refused. Never repeat a line you already said. Do not ask again for details the user already gave or refused.\n"
         'Reply with ONLY the words the caller says out loud: plain text, no JSON, no quotation marks, no stage directions.'
     )
 
@@ -130,7 +132,7 @@ def _build_caller_user_prompt(state: CallState, stage: Stage, user_message: str)
     return (
         f"Conversation so far:\n{transcript_str}\n\n"
         f"User just said: {user_message}\n"
-        f"Reply as the caller for the current stage ({stage.id})."
+        "Reply as the caller: first respond directly to what the user just said, then move toward the stage goal."
     )
 
 
@@ -206,7 +208,7 @@ def call_start(req: CallStartRequest, request: Request):
         stage_tactics=stage.tactics,
         fallback_lines=stage.fallback_lines,
         temperature=0.7,
-        max_tokens=1000,
+        max_tokens=2000,
     )
     state.fallback_used = fb_used
 
@@ -303,7 +305,7 @@ def call_turn(req: CallTurnRequest, request: Request):
         stage_tactics=stage.tactics,
         fallback_lines=stage.fallback_lines,
         temperature=0.7,
-        max_tokens=1000,
+        max_tokens=2000,
     )
     state.fallback_used = state.fallback_used or fb_used
 

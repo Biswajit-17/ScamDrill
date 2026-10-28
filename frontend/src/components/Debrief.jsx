@@ -10,7 +10,7 @@ const TACTIC_LABELS = {
   payment_request: "Payment request",
 }
 
-export default function Debrief({ debrief, state, onShare, onRestart }) {
+export default function Debrief({ debrief, state, onShare, onRestart, onPostQuiz }) {
   if (!debrief) {
     return (
       <div className="max-w-md mx-auto px-4 py-16 text-center text-slate-600">
@@ -116,6 +116,17 @@ export default function Debrief({ debrief, state, onShare, onRestart }) {
         </div>
       )}
 
+      {onPostQuiz && (
+        <div className="bg-white rounded-xl shadow-sm border border-slate-200 p-4 mb-6 text-center">
+          <p className="text-sm text-slate-600 mb-3">Check what stuck: take a short 5-question follow-up quiz.</p>
+          <button
+            onClick={onPostQuiz}
+            className="px-5 py-2 rounded-lg bg-slate-800 text-white font-semibold hover:bg-slate-900 transition"
+          >
+            Take the post-quiz
+          </button>
+        </div>
+      )}
       <div className="flex gap-3">
         <button
           onClick={onShare}
