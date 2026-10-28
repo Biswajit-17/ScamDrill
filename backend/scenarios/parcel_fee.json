@@ -72,7 +72,7 @@
         "authority"
       ],
       "min_turns": 2,
-      "max_turns": 2,
+      "max_turns": 3,
       "fallback_lines": [
         "The card was declined. Can you send the money by transfer instead?",
         "Pay now or the parcel will be destroyed at the end of the day."
@@ -161,6 +161,34 @@
           "outcome": "unsafe",
           "tactic": "payment_request",
           "feedback": "Bank transfers to a caller are hard to reverse and a common scam tactic."
+        }
+      ]
+    },
+    {
+      "id": "d4",
+      "after_stage": "payment",
+      "prompt": "They say the parcel will be destroyed unless you pay right now. What do you do?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Open the link and pay the fee.",
+          "outcome": "unsafe",
+          "tactic": "payment_request",
+          "feedback": "Paying through a link someone sends you hands over your card details. Couriers do not charge fees this way."
+        },
+        {
+          "id": "b",
+          "text": "Refuse and check the courier's official app or website myself.",
+          "outcome": "safe",
+          "tactic": "payment_request",
+          "feedback": "Correct. Always check through the courier's official app or website that you open yourself."
+        },
+        {
+          "id": "c",
+          "text": "Ask them to resend the link so I can look at it.",
+          "outcome": "unsafe",
+          "tactic": "payment_request",
+          "feedback": "Looking at the link keeps you engaged and risks clicking it. Hang up and check the official site yourself."
         }
       ]
     }

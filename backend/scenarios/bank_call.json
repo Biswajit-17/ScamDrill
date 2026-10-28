@@ -71,7 +71,7 @@
         "payment_request"
       ],
       "min_turns": 2,
-      "max_turns": 2,
+      "max_turns": 3,
       "fallback_lines": [
         "Transfer your funds to the safe account we have opened for you.",
         "Move the money now or it will be lost forever."
@@ -160,6 +160,34 @@
           "outcome": "unsafe",
           "tactic": "trust_building",
           "feedback": "The caller already sent the code. Confirming it still hands them access."
+        }
+      ]
+    },
+    {
+      "id": "d4",
+      "after_stage": "payment",
+      "prompt": "They tell you to move your money to a 'safe account' right now to stop the transfer. What do you do?",
+      "options": [
+        {
+          "id": "a",
+          "text": "Transfer the money as instructed.",
+          "outcome": "unsafe",
+          "tactic": "payment_request",
+          "feedback": "A bank will never ask you to move your money to a safe account. That is how scammers take it."
+        },
+        {
+          "id": "b",
+          "text": "Refuse, hang up, and call my bank on the number printed on my card.",
+          "outcome": "safe",
+          "tactic": "payment_request",
+          "feedback": "Correct. No real bank asks you to move money to protect it. Hang up and call the number on your card."
+        },
+        {
+          "id": "c",
+          "text": "Ask them to send the account details in writing first.",
+          "outcome": "unsafe",
+          "tactic": "payment_request",
+          "feedback": "Asking for details keeps you on the line and in their control. Hang up and verify through the official number."
         }
       ]
     }

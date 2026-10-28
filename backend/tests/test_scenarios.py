@@ -19,7 +19,7 @@ def test_bank_call_loads_and_validates():
     assert scenario.id == "bank_call"
     assert scenario.title == "The bank security call"
     assert [s.id for s in scenario.stages] == ["hook", "trust", "pressure", "credential", "payment"]
-    assert [d.id for d in scenario.decisions] == ["d1", "d2", "d3"]
+    assert [d.id for d in scenario.decisions] == ["d1", "d2", "d3", "d4"]
     # persona is fictional
     assert scenario.persona.name == "Daniel Reyes"
     assert scenario.persona.org == "Northgate Bank (fictional)"
@@ -30,7 +30,7 @@ def test_parcel_fee_loads_and_validates():
     scenario = Scenario(**data)
     assert scenario.id == "parcel_fee"
     assert [s.id for s in scenario.stages] == ["hook", "trust", "pressure", "credential", "payment"]
-    assert [d.id for d in scenario.decisions] == ["d1", "d2", "d3"]
+    assert [d.id for d in scenario.decisions] == ["d1", "d2", "d3", "d4"]
 
 
 def test_all_tactics_are_from_fixed_list():

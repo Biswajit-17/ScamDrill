@@ -107,7 +107,7 @@ def _rate_limit_ok(request: Request) -> bool:
 
 def _build_caller_system_prompt(scenario: Scenario, stage: Stage, language: str) -> str:
     persona = scenario.persona
-    tactics_str = ", ".join(stage.tactics)
+    tactics_str = ", ".join(x.replace("_", " ") for x in stage.tactics)
     return (
         "You are playing a fictional scam caller in a training simulation that teaches "
         "people to recognise scams.\n"
@@ -142,7 +142,8 @@ def _apply_output_filter(
     line_text: str, tactics: list[str], fallback_lines: list[str]
 ) -> tuple[str, list[str], bool]:
     """Run output filter. Returns (text, tactics, fallback_used)."""
-    if gr.output_safe(line_text):
+    internal_ids = ("trust_building", "verification_blocking", "credential_request", "remote_access", "payment_request")
+    if gr.output_safe(line_text) and not any(i in line_text for i in internal_ids):
         return line_text, tactics, False
     import random
     fallback = random.choice(fallback_lines) if fallback_lines else (
