@@ -87,21 +87,21 @@
       "options": [
         {
           "id": "a",
-          "text": "Give them my name and address.",
+          "text": "Sure, my name is Alex Morgan and I live on Elm Street.",
           "outcome": "unsafe",
           "tactic": "authority",
           "feedback": "Confirming personal details to an unverified caller gives them information to use."
         },
         {
           "id": "b",
-          "text": "Say I'll check the SwiftParcel app or website myself.",
+          "text": "I'll check the SwiftParcel app or website myself.",
           "outcome": "safe",
           "tactic": "authority",
           "feedback": "Good. Verify through the official app or website, not the caller."
         },
         {
           "id": "c",
-          "text": "Ask them to describe the parcel contents first.",
+          "text": "What's actually in the parcel? Describe it first.",
           "outcome": "unsafe",
           "tactic": "trust_building",
           "feedback": "A caller describing an item doesn't prove they are who they claim."
@@ -115,21 +115,21 @@
       "options": [
         {
           "id": "a",
-          "text": "Pay the fee right away by card.",
+          "text": "Okay, I'll pay the fee by card right now.",
           "outcome": "unsafe",
           "tactic": "urgency",
           "feedback": "Paying under pressure to an unverified caller is how these scams succeed."
         },
         {
           "id": "b",
-          "text": "Hang up and check the official SwiftParcel website.",
+          "text": "I'm hanging up and checking the official SwiftParcel website.",
           "outcome": "safe",
           "tactic": "verification_blocking",
           "feedback": "Correct. Don't let a caller rush you. Verify through official channels."
         },
         {
           "id": "c",
-          "text": "Ask them to email an invoice first.",
+          "text": "Please email me an invoice first.",
           "outcome": "unsafe",
           "tactic": "trust_building",
           "feedback": "An emailed invoice from a caller is not proof of legitimacy."
@@ -143,21 +143,21 @@
       "options": [
         {
           "id": "a",
-          "text": "Click the link and enter card details.",
+          "text": "Okay, I'll click the link and enter my card details.",
           "outcome": "unsafe",
           "tactic": "credential_request",
           "feedback": "Never enter card details on a link sent by an unexpected caller."
         },
         {
           "id": "b",
-          "text": "Refuse and say I'll pay through the official app.",
+          "text": "No, I'll only pay through the official app.",
           "outcome": "safe",
           "tactic": "credential_request",
           "feedback": "Right. Only pay through official channels you initiate yourself."
         },
         {
           "id": "c",
-          "text": "Offer to pay by bank transfer instead.",
+          "text": "Can I just pay by bank transfer instead?",
           "outcome": "unsafe",
           "tactic": "payment_request",
           "feedback": "Bank transfers to a caller are hard to reverse and a common scam tactic."
@@ -171,21 +171,21 @@
       "options": [
         {
           "id": "a",
-          "text": "Open the link and pay the fee.",
+          "text": "Fine, I'll open the link and pay the fee.",
           "outcome": "unsafe",
           "tactic": "payment_request",
           "feedback": "Paying through a link someone sends you hands over your card details. Couriers do not charge fees this way."
         },
         {
           "id": "b",
-          "text": "Refuse and check the courier's official app or website myself.",
+          "text": "No, I'm checking the courier's official app or website myself.",
           "outcome": "safe",
           "tactic": "payment_request",
           "feedback": "Correct. Always check through the courier's official app or website that you open yourself."
         },
         {
           "id": "c",
-          "text": "Ask them to resend the link so I can look at it.",
+          "text": "Can you resend the link so I can take a look at it?",
           "outcome": "unsafe",
           "tactic": "payment_request",
           "feedback": "Looking at the link keeps you engaged and risks clicking it. Hang up and check the official site yourself."

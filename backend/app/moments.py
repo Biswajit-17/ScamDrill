@@ -36,7 +36,7 @@ def build_moments(scenario, state):
             continue
         what = f'{decision.prompt} You chose: "{option.text}" {option.feedback}'.strip()
         if option.outcome == "safe":
-            say = "Keep doing this: " + option.text
+            say = 'Keep doing this: "' + option.text + '"'
         else:
             safe = _safe_option(decision)
             if safe is not None:

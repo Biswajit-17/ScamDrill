@@ -93,7 +93,7 @@ export default function Call({
               type="text"
               value={userInput}
               onChange={(e) => onUserInput(e.target.value)}
-              placeholder="Type your response..."
+              placeholder="Type your reply (use made-up details)..."
               disabled={loading}
               className="flex-1 px-4 py-3 rounded-lg border border-slate-300 focus:ring-2 focus:ring-red-500 focus:border-transparent outline-none disabled:opacity-50"
             />

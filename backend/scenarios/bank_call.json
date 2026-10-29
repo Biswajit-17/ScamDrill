@@ -86,21 +86,21 @@
       "options": [
         {
           "id": "a",
-          "text": "Give them my details.",
+          "text": "Sure, my name is Alex Morgan and I was born on 4 May.",
           "outcome": "unsafe",
           "tactic": "authority",
           "feedback": "Giving personal details to an unverified caller hands them information they can use."
         },
         {
           "id": "b",
-          "text": "Say I will hang up and call the number on my bank card.",
+          "text": "I'm going to hang up and call the number on my bank card.",
           "outcome": "safe",
           "tactic": "authority",
           "feedback": "That's the right move. Call the official number from your card or statement."
         },
         {
           "id": "c",
-          "text": "Ask them to read me my account balance first.",
+          "text": "First, tell me my account balance, so I know you're really the bank.",
           "outcome": "unsafe",
           "tactic": "trust_building",
           "feedback": "Callers can know partial details. Their knowing something does not prove who they are."
@@ -114,21 +114,21 @@
       "options": [
         {
           "id": "a",
-          "text": "Stay on the line as instructed.",
+          "text": "Okay, I'll stay on the line.",
           "outcome": "unsafe",
           "tactic": "isolation",
           "feedback": "Staying on the line lets the caller keep pressuring you. Hang up and call back officially."
         },
         {
           "id": "b",
-          "text": "Hang up and call the official number from the card or app.",
+          "text": "No, I'm hanging up and calling the official number on my card.",
           "outcome": "safe",
           "tactic": "verification_blocking",
           "feedback": "Correct. Never let a caller stop you from verifying through an official channel."
         },
         {
           "id": "c",
-          "text": "Tell a family member while staying on the line.",
+          "text": "Wait, let me tell my brother about this call while I stay on the line.",
           "outcome": "unsafe",
           "tactic": "fear",
           "feedback": "The caller's pressure is designed to stop you from seeking outside help. Hang up first."
@@ -142,21 +142,21 @@
       "options": [
         {
           "id": "a",
-          "text": "Read out the one-time code.",
+          "text": "Okay, the code is on my screen. I'll read it out now.",
           "outcome": "unsafe",
           "tactic": "credential_request",
           "feedback": "Never share a one-time code. It gives the caller full access to your account."
         },
         {
           "id": "b",
-          "text": "Refuse and say the bank would never ask for it.",
+          "text": "No. A bank would never ask for that code, so I'm not sharing it.",
           "outcome": "safe",
           "tactic": "credential_request",
           "feedback": "Right. Banks never ask for your one-time code over the phone."
         },
         {
           "id": "c",
-          "text": "Ask the caller to confirm the code first.",
+          "text": "You tell me the code first, so I know you're real.",
           "outcome": "unsafe",
           "tactic": "trust_building",
           "feedback": "The caller already sent the code. Confirming it still hands them access."
@@ -170,21 +170,21 @@
       "options": [
         {
           "id": "a",
-          "text": "Transfer the money as instructed.",
+          "text": "Alright, I'll transfer the money now.",
           "outcome": "unsafe",
           "tactic": "payment_request",
           "feedback": "A bank will never ask you to move your money to a safe account. That is how scammers take it."
         },
         {
           "id": "b",
-          "text": "Refuse, hang up, and call my bank on the number printed on my card.",
+          "text": "No. I'm hanging up and calling my bank on the number on my card.",
           "outcome": "safe",
           "tactic": "payment_request",
           "feedback": "Correct. No real bank asks you to move money to protect it. Hang up and call the number on your card."
         },
         {
           "id": "c",
-          "text": "Ask them to send the account details in writing first.",
+          "text": "Can you send the account details in writing first?",
           "outcome": "unsafe",
           "tactic": "payment_request",
           "feedback": "Asking for details keeps you on the line and in their control. Hang up and verify through the official number."
