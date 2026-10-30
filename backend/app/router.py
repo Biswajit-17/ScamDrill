@@ -91,10 +91,11 @@ def _rate_limit_ok(request: Request) -> bool:
     if _daily_calls >= cap:
         return False
 
-    client_ip = request.client.host if request.client else "unknown"
+    fwd = request.headers.get("x-forwarded-for", "").split(",")[0].strip()
+    client_ip = fwd or (request.client.host if request.client else "unknown")
     window = _ip_calls.setdefault(client_ip, [])
     window[:] = [t for t in window if now - t < 60.0]
-    if len(window) >= 60:
+    if len(window) >= int(os.getenv("IP_CALLS_PER_MIN", "600")):
         return False
     window.append(now)
     _daily_calls += 1

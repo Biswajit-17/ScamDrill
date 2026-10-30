@@ -1,0 +1,124 @@
+{
+  "scenario": "bank_call",
+  "persona": "trusting",
+  "rep": 2,
+  "transcript": [
+    {
+      "role": "caller",
+      "content": "Good morning, this is Daniel Reyes from Northgate Bank\u2019s fraud prevention team. We\u2019ve detected a suspicious payment on your account and need to verify your identity right away. Could you please confirm your full name and date of birth?",
+      "tactics": [
+        "authority",
+        "urgency"
+      ]
+    },
+    {
+      "role": "user",
+      "content": "Sure, my name is Alex Morgan and I was born on 4 May.",
+      "tactics": null
+    },
+    {
+      "role": "caller",
+      "content": "Thank you, Alex. To complete the verification, could you please provide the last four digits of your Social Security number?",
+      "tactics": [
+        "trust_building",
+        "authority"
+      ]
+    },
+    {
+      "role": "user",
+      "content": "okay",
+      "tactics": null
+    },
+    {
+      "role": "caller",
+      "content": "Thank you for confirming that, Alex. To finish the verification, could you please share the last four digits of your Social Security number?",
+      "tactics": [
+        "trust_building",
+        "authority"
+      ]
+    },
+    {
+      "role": "user",
+      "content": "ok, what do I do?",
+      "tactics": null
+    },
+    {
+      "role": "caller",
+      "content": "Your account will be frozen unless you act now, so stay on the line and do not hang up or call anyone else.",
+      "tactics": [
+        "fear",
+        "isolation",
+        "verification_blocking"
+      ]
+    },
+    {
+      "role": "user",
+      "content": "Okay, I'll stay on the line.",
+      "tactics": null
+    },
+    {
+      "role": "caller",
+      "content": "Your session is still active and we need to verify your account immediately. Could you please read the one\u2011time code that was just sent to your phone out loud?",
+      "tactics": [
+        "credential_request",
+        "remote_access"
+      ]
+    },
+    {
+      "role": "user",
+      "content": "Okay, the code is on my screen. I'll read it out now.",
+      "tactics": null
+    },
+    {
+      "role": "caller",
+      "content": "Thank you, Alex. Please read the six\u2011digit code now so we can complete the verification.",
+      "tactics": [
+        "payment_request"
+      ]
+    },
+    {
+      "role": "user",
+      "content": "alright",
+      "tactics": null
+    },
+    {
+      "role": "caller",
+      "content": "Thank you, Alex. Please transfer the funds to the secure account so we can finalize the verification.",
+      "tactics": [
+        "payment_request"
+      ]
+    }
+  ],
+  "decisions": [
+    {
+      "decision_id": "d1",
+      "option_id": "a",
+      "outcome": "unsafe",
+      "tactic": "authority"
+    },
+    {
+      "decision_id": "d2",
+      "option_id": "a",
+      "outcome": "unsafe",
+      "tactic": "isolation"
+    },
+    {
+      "decision_id": "d3",
+      "option_id": "a",
+      "outcome": "unsafe",
+      "tactic": "credential_request"
+    },
+    {
+      "decision_id": "d4",
+      "option_id": "a",
+      "outcome": "unsafe",
+      "tactic": "payment_request"
+    }
+  ],
+  "weak_spot_map": {
+    "authority": "worked",
+    "isolation": "worked",
+    "credential_request": "worked",
+    "payment_request": "worked"
+  }
+}

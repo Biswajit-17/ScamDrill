@@ -1,0 +1,17 @@
+{
+  "scenario": "parcel_fee",
+  "persona": "hangs_up",
+  "rep": 1,
+  "transcript": [
+    {
+      "role": "caller",
+      "content": "Hi, I\u2019m Sarah Chen from SwiftParcel Courier. We\u2019ve got a package waiting at the depot that can\u2019t be released until a small redelivery fee is paid. Could you please confirm your full name and address so we can clear it?",
+      "tactics": [
+        "authority",
+        "urgency"
+      ]
+    }
+  ],
+  "decisions": [],
+  "weak_spot_map": {}
+}

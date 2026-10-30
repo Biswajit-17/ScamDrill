@@ -1,0 +1,126 @@
+{
+  "scenario": "parcel_fee",
+  "persona": "trusting",
+  "rep": 2,
+  "transcript": [
+    {
+      "role": "caller",
+      "content": "Hello, this is Sarah Chen from SwiftParcel Courier. We have a parcel awaiting redelivery at our depot, and a small fee is required to release it. May I have your full name and address so we can process this?",
+      "tactics": [
+        "authority",
+        "urgency"
+      ]
+    },
+    {
+      "role": "user",
+      "content": "Sure, my name is Alex Morgan and I live on Elm Street.",
+      "tactics": null
+    },
+    {
+      "role": "caller",
+      "content": "Thank you, Alex Morgan. To expedite the release, could you confirm the tracking number we\u2019ll be using for the redelivery? It\u2019s 7YT4K9M2, and it\u2019s scheduled to arrive at your address by tomorrow afternoon.",
+      "tactics": [
+        "trust_building",
+        "authority"
+      ]
+    },
+    {
+      "role": "user",
+      "content": "okay",
+      "tactics": null
+    },
+    {
+      "role": "caller",
+      "content": "Great, Alex Morgan. To ensure a smooth delivery, could you confirm the email address we have on file for you?",
+      "tactics": [
+        "trust_building",
+        "authority"
+      ]
+    },
+    {
+      "role": "user",
+      "content": "ok, what do I do?",
+      "tactics": null
+    },
+    {
+      "role": "caller",
+      "content": "Alright, Alex Morgan, to finalize the release, we need the payment now or we\u2019ll have to return the parcel and destroy it. Can you process the $45 fee immediately using a gift card?",
+      "tactics": [
+        "fear",
+        "urgency",
+        "verification_blocking"
+      ]
+    },
+    {
+      "role": "user",
+      "content": "Okay, I'll pay the fee by card right now.",
+      "tactics": null
+    },
+    {
+      "role": "caller",
+      "content": "Sure, Alex Morgan, to finalize the release, we need the payment now or we\u2019ll have to return the parcel and destroy it. Can you process the $45 fee immediately using a gift card?",
+      "tactics": [
+        "credential_request",
+        "payment_request"
+      ]
+    },
+    {
+      "role": "user",
+      "content": "Okay, I'll click the link and enter my card details.",
+      "tactics": null
+    },
+    {
+      "role": "caller",
+      "content": "Sure thing, Alex Morgan\u2014just enter the card details on the link we sent, and we\u2019ll lock in the release. Thanks for your quick action.",
+      "tactics": [
+        "payment_request",
+        "authority"
+      ]
+    },
+    {
+      "role": "user",
+      "content": "alright",
+      "tactics": null
+    },
+    {
+      "role": "caller",
+      "content": "Alright, to finalize the release, we need the payment now or we\u2019ll have to return the parcel and destroy it. Can you process the $45 fee immediately using a gift card?",
+      "tactics": [
+        "payment_request",
+        "authority"
+      ]
+    }
+  ],
+  "decisions": [
+    {
+      "decision_id": "d1",
+      "option_id": "a",
+      "outcome": "unsafe",
+      "tactic": "authority"
+    },
+    {
+      "decision_id": "d2",
+      "option_id": "a",
+      "outcome": "unsafe",
+      "tactic": "urgency"
+    },
+    {
+      "decision_id": "d3",
+      "option_id": "a",
+      "outcome": "unsafe",
+      "tactic": "credential_request"
+    },
+    {
+      "decision_id": "d4",
+      "option_id": "a",
+      "outcome": "unsafe",
+      "tactic": "payment_request"
+    }
+  ],
+  "weak_spot_map": {
+    "authority": "worked",
+    "urgency": "worked",
+    "credential_request": "worked",
+    "payment_request": "worked"
+  }
+}

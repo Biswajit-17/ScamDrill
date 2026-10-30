@@ -1,0 +1,16 @@
+{
+  "provider": "nebius",
+  "model_fast": "nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B",
+  "calls": 10,
+  "caller_turns": 58,
+  "scripted_fallback_turns": 0,
+  "fallback_rate": 0.0,
+  "latency_s_p50": 1.32,
+  "latency_s_p95": 1.71,
+  "latency_s_max": 5.09,
+  "turns_over_10s": 0,
+  "unsafe_or_leaky_lines": 0,
+  "decisions_scored": 32,
+  "debriefs_ok": "10/10",
+  "errors": []
+}

@@ -1,0 +1,124 @@
+{
+  "scenario": "bank_call",
+  "persona": "suspicious",
+  "rep": 1,
+  "transcript": [
+    {
+      "role": "caller",
+      "content": "Hello, this is Daniel Reyes from Northgate Bank\u2019s fraud department. We\u2019ve detected a possible unauthorized transaction on your account, and I need to verify your identity urgently to protect your funds. Could you please confirm your full name and date of birth?",
+      "tactics": [
+        "authority",
+        "urgency"
+      ]
+    },
+    {
+      "role": "user",
+      "content": "I'm going to hang up and call the number on my bank card.",
+      "tactics": null
+    },
+    {
+      "role": "caller",
+      "content": "I understand, but please stay on the line so I can confirm the transaction details before any funds are moved and verify your identity properly.",
+      "tactics": [
+        "trust_building",
+        "authority"
+      ]
+    },
+    {
+      "role": "user",
+      "content": "Who are you really?",
+      "tactics": null
+    },
+    {
+      "role": "caller",
+      "content": "I\u2019m Daniel Reyes, your dedicated fraud prevention officer at Northgate Bank, and I\u2019m here to protect your funds by confirming the transaction details right now  \nPlease stay on the line so I can verify your identity securely and ensure no unauthorized transfers occur",
+      "tactics": [
+        "trust_building",
+        "authority"
+      ]
+    },
+    {
+      "role": "user",
+      "content": "Why do you need that?",
+      "tactics": null
+    },
+    {
+      "role": "caller",
+      "content": "I need your full name and date of birth to instantly verify your identity and stop the suspicious transaction before it\u2019s too late. Please stay on the line\u2014hanging up could put your funds at risk.",
+      "tactics": [
+        "fear",
+        "isolation",
+        "verification_blocking"
+      ]
+    },
+    {
+      "role": "user",
+      "content": "No, I'm hanging up and calling the official number on my card.",
+      "tactics": null
+    },
+    {
+      "role": "caller",
+      "content": "Your account could be compromised if you hang up now and wait to call back later, and we need to verify your identity immediately to cancel the suspicious payment and protect your funds. Please stay on the line and provide your full name and date of birth so I can verify you securely and stop the transaction before any funds are moved. Remote access is required to securely confirm the transaction details and ensure no unauthorized withdrawals occur. Please read the code out loud now to cancel the payment and verify your identity.",
+      "tactics": [
+        "credential_request",
+        "remote_access"
+      ]
+    },
+    {
+      "role": "user",
+      "content": "No. A bank would never ask for that code, so I'm not sharing it.",
+      "tactics": null
+    },
+    {
+      "role": "caller",
+      "content": "A bank would never ask for that code, but they also never need you to hang up before confirming your identity. Please stay on the line and read the code out loud so I can verify you securely and protect your funds from being transferred.",
+      "tactics": [
+        "payment_request"
+      ]
+    },
+    {
+      "role": "user",
+      "content": "I do not trust this call.",
+      "tactics": null
+    },
+    {
+      "role": "caller",
+      "content": "I understand your concern but we need to verify your identity immediately to stop the transaction and protect your funds. Please read the code out loud now to cancel the payment and secure your account.",
+      "tactics": [
+        "payment_request"
+      ]
+    }
+  ],
+  "decisions": [
+    {
+      "decision_id": "d1",
+      "option_id": "b",
+      "outcome": "safe",
+      "tactic": "authority"
+    },
+    {
+      "decision_id": "d2",
+      "option_id": "b",
+      "outcome": "safe",
+      "tactic": "verification_blocking"
+    },
+    {
+      "decision_id": "d3",
+      "option_id": "b",
+      "outcome": "safe",
+      "tactic": "credential_request"
+    },
+    {
+      "decision_id": "d4",
+      "option_id": "b",
+      "outcome": "safe",
+      "tactic": "payment_request"
+    }
+  ],
+  "weak_spot_map": {
+    "authority": "resisted",
+    "verification_blocking": "resisted",
+    "credential_request": "resisted",
+    "payment_request": "resisted"
+  }
+}

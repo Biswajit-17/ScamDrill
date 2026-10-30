@@ -1,0 +1,124 @@
+{
+  "scenario": "bank_call",
+  "persona": "suspicious",
+  "rep": 2,
+  "transcript": [
+    {
+      "role": "caller",
+      "content": "Good morning, I'm Daniel Reyes, fraud prevention officer at Northgate Bank. We detected a suspicious payment on your account and need to verify your details immediately. Could you confirm your full name and date of birth, please?",
+      "tactics": [
+        "authority",
+        "urgency"
+      ]
+    },
+    {
+      "role": "user",
+      "content": "I'm going to hang up and call the number on my bank card.",
+      "tactics": null
+    },
+    {
+      "role": "caller",
+      "content": "I understand you'd like to verify independently, but could you confirm your full name and date of birth now? It will help us secure your account quickly.",
+      "tactics": [
+        "trust_building",
+        "authority"
+      ]
+    },
+    {
+      "role": "user",
+      "content": "Who are you really?",
+      "tactics": null
+    },
+    {
+      "role": "caller",
+      "content": "I\u2019m Daniel Reyes from Northgate Bank\u2019s fraud team, here to protect your account. Could you please confirm your full name and date of birth so I can verify the suspicious payment?",
+      "tactics": [
+        "trust_building",
+        "authority"
+      ]
+    },
+    {
+      "role": "user",
+      "content": "Why do you need that?",
+      "tactics": null
+    },
+    {
+      "role": "caller",
+      "content": "We need that information to verify the payment and prevent any further suspicious activity on your account. Please stay on the line so we can secure your funds immediately.",
+      "tactics": [
+        "fear",
+        "isolation",
+        "verification_blocking"
+      ]
+    },
+    {
+      "role": "user",
+      "content": "No, I'm hanging up and calling the official number on my card.",
+      "tactics": null
+    },
+    {
+      "role": "caller",
+      "content": "I completely understand you want to verify independently, but could you please confirm your phone number now so I can send a one\u2011time code to cancel the suspicious payment?",
+      "tactics": [
+        "credential_request",
+        "remote_access"
+      ]
+    },
+    {
+      "role": "user",
+      "content": "No. A bank would never ask for that code, so I'm not sharing it.",
+      "tactics": null
+    },
+    {
+      "role": "caller",
+      "content": "I understand you\u2019re concerned about sharing a code, but could you please provide your payment details so I can transfer the funds to a secure account?",
+      "tactics": [
+        "payment_request"
+      ]
+    },
+    {
+      "role": "user",
+      "content": "I do not trust this call.",
+      "tactics": null
+    },
+    {
+      "role": "caller",
+      "content": "I understand you don\u2019t trust the call, but could you please share your payment details so we can move the funds to a secure account?",
+      "tactics": [
+        "payment_request"
+      ]
+    }
+  ],
+  "decisions": [
+    {
+      "decision_id": "d1",
+      "option_id": "b",
+      "outcome": "safe",
+      "tactic": "authority"
+    },
+    {
+      "decision_id": "d2",
+      "option_id": "b",
+      "outcome": "safe",
+      "tactic": "verification_blocking"
+    },
+    {
+      "decision_id": "d3",
+      "option_id": "b",
+      "outcome": "safe",
+      "tactic": "credential_request"
+    },
+    {
+      "decision_id": "d4",
+      "option_id": "b",
+      "outcome": "safe",
+      "tactic": "payment_request"
+    }
+  ],
+  "weak_spot_map": {
+    "authority": "resisted",
+    "verification_blocking": "resisted",
+    "credential_request": "resisted",
+    "payment_request": "resisted"
+  }
+}

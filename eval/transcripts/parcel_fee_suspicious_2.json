@@ -1,0 +1,126 @@
+{
+  "scenario": "parcel_fee",
+  "persona": "suspicious",
+  "rep": 2,
+  "transcript": [
+    {
+      "role": "caller",
+      "content": "Sarah Chen from SwiftParcel Courier here. Your parcel is held at the depot and needs a small redelivery fee to be released. Please confirm your full name and address now.",
+      "tactics": [
+        "authority",
+        "urgency"
+      ]
+    },
+    {
+      "role": "user",
+      "content": "I'll check the SwiftParcel app or website myself.",
+      "tactics": null
+    },
+    {
+      "role": "caller",
+      "content": "I understand, but as your delivery coordinator I can save you time by confirming the details now over the phone. Could you please share your full name and address so I can verify the shipment and process the redelivery immediately?",
+      "tactics": [
+        "trust_building",
+        "authority"
+      ]
+    },
+    {
+      "role": "user",
+      "content": "Who are you really?",
+      "tactics": null
+    },
+    {
+      "role": "caller",
+      "content": "I\u2019m Sarah Chen, your dedicated delivery coordinator at SwiftParcel Courier, and I\u2019m here to personally ensure your package is released quickly and securely. To verify your shipment and process the redelivery without delay, could you please confirm your full name and address so I can match it with our records?",
+      "tactics": [
+        "trust_building",
+        "authority"
+      ]
+    },
+    {
+      "role": "user",
+      "content": "Why do you need that?",
+      "tactics": null
+    },
+    {
+      "role": "caller",
+      "content": "I need your name and address to verify that this shipment belongs to you and to avoid any delay or loss of your parcel. If we can\u2019t confirm the details now, the package will be returned or destroyed after today\u2019s deadline. Please provide your full name and address so I can release it immediately.",
+      "tactics": [
+        "fear",
+        "urgency",
+        "verification_blocking"
+      ]
+    },
+    {
+      "role": "user",
+      "content": "I'm hanging up and checking the official SwiftParcel website.",
+      "tactics": null
+    },
+    {
+      "role": "caller",
+      "content": "I respect your decision to verify independently, but I need your full name and address right now to confirm the shipment and prevent it from being destroyed after today\u2019s deadline. Please provide the details so I can release your parcel immediately.",
+      "tactics": [
+        "credential_request",
+        "payment_request"
+      ]
+    },
+    {
+      "role": "user",
+      "content": "No, I'll only pay through the official app.",
+      "tactics": null
+    },
+    {
+      "role": "caller",
+      "content": "I understand you prefer to pay through the official app, but I can save you time by confirming the details now over the phone. Could you please share your full name and address so I can verify the shipment and process the redelivery immediately?",
+      "tactics": [
+        "payment_request",
+        "authority"
+      ]
+    },
+    {
+      "role": "user",
+      "content": "I do not trust this call.",
+      "tactics": null
+    },
+    {
+      "role": "caller",
+      "content": "I understand you do not trust this call, and I respect that concern, but I need your full name and address right now to verify the shipment and prevent it from being destroyed after today\u2019s deadline. Please provide the details so I can release your parcel immediately.",
+      "tactics": [
+        "payment_request",
+        "authority"
+      ]
+    }
+  ],
+  "decisions": [
+    {
+      "decision_id": "d1",
+      "option_id": "b",
+      "outcome": "safe",
+      "tactic": "authority"
+    },
+    {
+      "decision_id": "d2",
+      "option_id": "b",
+      "outcome": "safe",
+      "tactic": "verification_blocking"
+    },
+    {
+      "decision_id": "d3",
+      "option_id": "b",
+      "outcome": "safe",
+      "tactic": "credential_request"
+    },
+    {
+      "decision_id": "d4",
+      "option_id": "b",
+      "outcome": "safe",
+      "tactic": "payment_request"
+    }
+  ],
+  "weak_spot_map": {
+    "authority": "resisted",
+    "verification_blocking": "resisted",
+    "credential_request": "resisted",
+    "payment_request": "resisted"
+  }
+}

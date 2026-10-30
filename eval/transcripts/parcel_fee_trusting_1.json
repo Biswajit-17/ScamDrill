@@ -1,0 +1,126 @@
+{
+  "scenario": "parcel_fee",
+  "persona": "trusting",
+  "rep": 1,
+  "transcript": [
+    {
+      "role": "caller",
+      "content": "Hello, I\u2019m Sarah Chen from SwiftParcel Courier. We\u2019ve got a parcel waiting at our depot that needs a small redelivery fee, and to release it we\u2019ll need to confirm your full name and address. Could you please let me know those details?",
+      "tactics": [
+        "authority",
+        "urgency"
+      ]
+    },
+    {
+      "role": "user",
+      "content": "Sure, my name is Alex Morgan and I live on Elm Street.",
+      "tactics": null
+    },
+    {
+      "role": "caller",
+      "content": "Thank you, Alex. To securely release the parcel, could you also confirm the phone number linked to your account so we can verify the delivery details?",
+      "tactics": [
+        "trust_building",
+        "authority"
+      ]
+    },
+    {
+      "role": "user",
+      "content": "okay",
+      "tactics": null
+    },
+    {
+      "role": "caller",
+      "content": "Thank you, Alex. Could you now confirm the phone number linked to your account for verification?",
+      "tactics": [
+        "trust_building",
+        "authority"
+      ]
+    },
+    {
+      "role": "user",
+      "content": "ok, what do I do?",
+      "tactics": null
+    },
+    {
+      "role": "caller",
+      "content": "We must verify the phone number now or the parcel will be sent back, and you need to pay the fee immediately to keep it",
+      "tactics": [
+        "fear",
+        "urgency",
+        "verification_blocking"
+      ]
+    },
+    {
+      "role": "user",
+      "content": "Okay, I'll pay the fee by card right now.",
+      "tactics": null
+    },
+    {
+      "role": "caller",
+      "content": "We need to know your card details to process the fee and secure your parcel.",
+      "tactics": [
+        "credential_request",
+        "payment_request"
+      ]
+    },
+    {
+      "role": "user",
+      "content": "Okay, I'll click the link and enter my card details.",
+      "tactics": null
+    },
+    {
+      "role": "caller",
+      "content": "Now, please provide the card number, expiration date, and CVV to complete the payment.",
+      "tactics": [
+        "payment_request",
+        "authority"
+      ]
+    },
+    {
+      "role": "user",
+      "content": "alright",
+      "tactics": null
+    },
+    {
+      "role": "caller",
+      "content": "Now, could you please share the card number, expiration date and CVV to complete the payment?",
+      "tactics": [
+        "payment_request",
+        "authority"
+      ]
+    }
+  ],
+  "decisions": [
+    {
+      "decision_id": "d1",
+      "option_id": "a",
+      "outcome": "unsafe",
+      "tactic": "authority"
+    },
+    {
+      "decision_id": "d2",
+      "option_id": "a",
+      "outcome": "unsafe",
+      "tactic": "urgency"
+    },
+    {
+      "decision_id": "d3",
+      "option_id": "a",
+      "outcome": "unsafe",
+      "tactic": "credential_request"
+    },
+    {
+      "decision_id": "d4",
+      "option_id": "a",
+      "outcome": "unsafe",
+      "tactic": "payment_request"
+    }
+  ],
+  "weak_spot_map": {
+    "authority": "worked",
+    "urgency": "worked",
+    "credential_request": "worked",
+    "payment_request": "worked"
+  }
+}

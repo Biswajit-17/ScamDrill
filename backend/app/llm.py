@@ -17,6 +17,11 @@ from typing import Optional
 
 from dotenv import load_dotenv
 load_dotenv()
+import sys as _sys
+try:
+    _sys.stdout.reconfigure(errors="replace")
+except Exception:
+    pass
 
 from openai import OpenAI
 from openai import RateLimitError, APIError, APITimeoutError
@@ -193,6 +198,7 @@ def generate_caller_line(
                 temperature=temperature,
                 max_tokens=max_tokens,
                 max_completion_tokens=max_tokens,
+                extra_body={"chat_template_kwargs": {"enable_thinking": False}},
             )
             elapsed = time.perf_counter() - t0
 

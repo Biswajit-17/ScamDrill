@@ -1,0 +1,17 @@
+{
+  "scenario": "bank_call",
+  "persona": "hangs_up",
+  "rep": 1,
+  "transcript": [
+    {
+      "role": "caller",
+      "content": "Hello, this is Daniel Reyes from the Northgate Bank fraud prevention team. I need to verify your identity before we can discuss a security issue with your account. Could you please confirm your full name and date of birth?",
+      "tactics": [
+        "authority",
+        "urgency"
+      ]
+    }
+  ],
+  "decisions": [],
+  "weak_spot_map": {}
+}

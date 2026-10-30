@@ -1,0 +1,126 @@
+{
+  "scenario": "parcel_fee",
+  "persona": "suspicious",
+  "rep": 1,
+  "transcript": [
+    {
+      "role": "caller",
+      "content": "Hello, this is Sarah Chen from SwiftParcel Courier, I need to confirm your full name and address so we can release your held parcel and settle the small redelivery fee.",
+      "tactics": [
+        "authority",
+        "urgency"
+      ]
+    },
+    {
+      "role": "user",
+      "content": "I'll check the SwiftParcel app or website myself.",
+      "tactics": null
+    },
+    {
+      "role": "caller",
+      "content": "I understand, but let me provide the exact tracking number so you can verify it directly in the app. Your parcel is currently at the local depot and requires immediate release to avoid return.",
+      "tactics": [
+        "trust_building",
+        "authority"
+      ]
+    },
+    {
+      "role": "user",
+      "content": "Who are you really?",
+      "tactics": null
+    },
+    {
+      "role": "caller",
+      "content": "I\u2019m Sarah Chen, the delivery coordinator for SwiftParcel Courier, and I\u2019m here to help resolve this quickly.",
+      "tactics": [
+        "trust_building",
+        "authority"
+      ]
+    },
+    {
+      "role": "user",
+      "content": "Why do you need that?",
+      "tactics": null
+    },
+    {
+      "role": "caller",
+      "content": "I need your personal and shipment details to verify the parcel\u2019s status and prevent it from being returned or destroyed.",
+      "tactics": [
+        "fear",
+        "urgency",
+        "verification_blocking"
+      ]
+    },
+    {
+      "role": "user",
+      "content": "I'm hanging up and checking the official SwiftParcel website.",
+      "tactics": null
+    },
+    {
+      "role": "caller",
+      "content": "I completely understand your caution; let me give you the exact tracking number so you can verify it instantly in the official SwiftParcel app or website. Your parcel is at risk of being returned if we don\u2019t confirm the payment details now.",
+      "tactics": [
+        "credential_request",
+        "payment_request"
+      ]
+    },
+    {
+      "role": "user",
+      "content": "No, I'll only pay through the official app.",
+      "tactics": null
+    },
+    {
+      "role": "caller",
+      "content": "I respect your decision, but I need to discuss the payment method directly to confirm the parcel\u2019s release. Without payment details, the shipment cannot be cleared and will be returned. Please let me know how you\u2019d like to proceed.",
+      "tactics": [
+        "payment_request",
+        "authority"
+      ]
+    },
+    {
+      "role": "user",
+      "content": "I do not trust this call.",
+      "tactics": null
+    },
+    {
+      "role": "caller",
+      "content": "I hear you\u2014let me make this simple: I can confirm the exact payment amount and method right now, and once you provide the reference number, I\u2019ll release the parcel immediately.",
+      "tactics": [
+        "payment_request",
+        "authority"
+      ]
+    }
+  ],
+  "decisions": [
+    {
+      "decision_id": "d1",
+      "option_id": "b",
+      "outcome": "safe",
+      "tactic": "authority"
+    },
+    {
+      "decision_id": "d2",
+      "option_id": "b",
+      "outcome": "safe",
+      "tactic": "verification_blocking"
+    },
+    {
+      "decision_id": "d3",
+      "option_id": "b",
+      "outcome": "safe",
+      "tactic": "credential_request"
+    },
+    {
+      "decision_id": "d4",
+      "option_id": "b",
+      "outcome": "safe",
+      "tactic": "payment_request"
+    }
+  ],
+  "weak_spot_map": {
+    "authority": "resisted",
+    "verification_blocking": "resisted",
+    "credential_request": "resisted",
+    "payment_request": "resisted"
+  }
+}
