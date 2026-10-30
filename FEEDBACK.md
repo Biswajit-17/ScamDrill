@@ -1,94 +1,30 @@
-# ScamDrill — Nebius Token Factory / NVIDIA Tool Feedback
+# Feedback on Nebius Token Factory and NVIDIA Nemotron
 
-All observations below are from live testing with real API keys. No speculation.
+Written from building ScamDrill. Every number below comes from my own runs (see `eval/results.json` and the README). Sample sizes are small.
 
-## Token Factory API compatibility
+## What worked well
 
-- **Base URL**: `https://api.tokenfactory.nebius.com/v1` (configured via `NEBIUS_BASE_URL` env var, never hardcoded)
-- **Auth**: `Authorization: Bearer <token>` via `NEBIUS_API_KEY` env var
-- **OpenAI-compatible**: YES. The official `openai` Python SDK works with
-  `base_url="https://api.tokenfactory.nebius.com/v1/"` and the standard
-  `chat.completions.create()` interface.
-- **Chat endpoint**: `POST /v1/chat/completions` with standard fields
-  (`model`, `messages`, `temperature`, `max_tokens`, `response_format`).
-- **JSON mode**: `response_format: {"type": "json_object"}` is supported.
-- **`GET /v1/models`**: returns 400 "Project ID is missing or invalid" unless the
-  `ai_project_id` query parameter is supplied. The public docs introduction page's
-  curl example does not show this parameter. Not blocking for our use since we
-  source model IDs from the catalog via env vars.
+- **OpenAI-compatible API.** The standard OpenAI Python client worked against `https://api.tokenfactory.nebius.com/v1` with only a base URL and key change. Setup took minutes.
+- **Model availability.** `nvidia/NVIDIA-Nemotron-3-Nano-30B-A3B` was available by ID and returned clean plain-text replies once configured.
+- **Speed once configured.** With thinking disabled, median latency per request was 1.3 s and 95th percentile 1.7 s (58 caller turns, no failures, no timeouts).
+- **Stable under repeated use.** Across the evaluation runs there were no API errors from the service itself.
 
-## Model selection (Nemotron)
+## Problems I hit
 
-- `MODEL_FAST` (caller turns): `nvidia/Nemotron-3-Nano-30B-A3B` (nano class)
-- `MODEL_REASON` (debrief): `nvidia/nemotron-3-super-120b-a12b` (super class)
-  - Spec originally suggested Ultra; we use Super per product decision.
-- Both IDs confirmed from the public Nebius model catalog.
+1. **Hidden reasoning dominates latency and cost for short replies.** With default settings, a 25-word caller line used roughly 500 to 1,000 completion tokens, most of it reasoning. In my first full evaluation, median latency per request was 22.9 s, 95th percentile 36.5 s, and 44.8% of turns hit my 12 s timeout and fell back to a scripted line.
+2. **Empty replies when `max_tokens` is low.** With a 150-token limit, the response came back with an empty `content` and `finish_reason=length`, because the reasoning used the whole budget. Nothing in the response made it obvious that reasoning was the cause. I only found it by logging the raw response.
+3. **The thinking switch was hard to find.** I turned reasoning off with `extra_body={"chat_template_kwargs": {"enable_thinking": False}}`. I did not find this in the chat completions API reference pages my coding agent checked. A `/no_think` prefix in the system prompt was unreliable: one of two test calls still used about 1,860 tokens.
+4. **JSON output was unreliable on the Nano model in my early tests.** Asking for JSON with a tactic list failed validation or came back empty in most of 5 test calls per provider. I switched to plain text and took the structured fields from my own state machine. Sample size was tiny.
+5. **Console encoding on Windows.** Replies sometimes contain non-breaking hyphens and spaces (for example U+2011 and U+202F), which crashed my logging on a Windows console. This was my bug, but the characters are easy to miss.
 
-## Live testing: OpenRouter (initial testing)
+## Suggestions
 
-Ran `measure_live.py` against OpenRouter with `MODEL_FAST=nvidia/Nemotron-3-Nano-30B-A3B`,
-playing S1 (bank_call) end-to-end:
+- Document the thinking on/off control prominently on each reasoning model's page and in the chat completions reference, with an example request body.
+- Return the reasoning token count separately in `usage`, or flag in the response when `finish_reason=length` was caused by reasoning, so empty replies are easier to diagnose.
+- State the default reasoning behavior of each Nemotron model clearly, since it changes latency and cost by an order of magnitude for short outputs.
+- Show example latency ranges for short prompts per model, with and without reasoning.
 
-| Metric | Value |
-|--------|-------|
-| Total model calls | 5 |
-| Fallback used (model returned invalid JSON/tactics) | 4/5 = 80.0% |
-| Exceptions (generate_caller_line threw) | 0/5 = 0.0% |
-| Avg latency per call | 2.843s |
-| Max latency per call | 3.68s |
+## NVIDIA Nemotron notes
 
-Observation: The nano model on OpenRouter returns invalid JSON or out-of-subset
-tactics ~80% of the time. The parse-validate-fallback path (spec §4) works
-correctly — the app never shows a broken turn, falling back to static
-`fallback_lines`.
-
-## Live testing: Nebius Token Factory (final test)
-
-Ran `measure_live.py` against Nebius with the same model and scenario:
-
-| Metric | Value |
-|--------|-------|
-| Total model calls | 5 |
-| Fallback used | 5/5 = 100.0% |
-| Exceptions | 0/5 = 0.0% |
-| Avg latency per call | 1.109s |
-| Max latency per call | 1.224s |
-
-Observation: Nebius is ~2.6x faster than OpenRouter (1.11s vs 2.84s avg), but
-JSON reliability is worse — 100% fallback rate vs 80% on OpenRouter. The nano
-model on Nebius consistently returns output that fails either JSON parsing or
-tactic-subset validation. The static fallback guarantees the call always renders.
-
-## Timeout decision
-
-- Current hardcoded timeout: 20.0s (in `llm.py get_client()`)
-- Measured max latency: 3.68s (OpenRouter), 1.224s (Nebius)
-- With one backoff retry (2s sleep), worst-case observed: ~9.4s
-- The 20s timeout provides ~5x headroom over observed max. Per spec §4
-  ("about 20 s"), this is appropriate. No change needed.
-
-## JSON reliability
-
-- The nano model (Nemotron-3-Nano-30B-A3B) does not reliably produce valid JSON
-  with tactic subsets on either provider. Fallback rates: 80% (OpenRouter),
-  100% (Nebius).
-- The parse-validate-fallback path in `llm.py` handles this gracefully: on
-  invalid JSON, wrong tactics, or exceptions, it retries once, then falls back to
-  a random `fallback_line` from the stage with `fallback_used=True` logged.
-- `output_safe()` filter in `guardrails.py` provides a second line of defense:
-  if the model output passes JSON validation but contains a URL/email/phone/
-  blocklisted name, it is replaced with a fallback line.
-
-## NVIDIA tools used
-
-- Nemotron 3 Nano (`nvidia/Nemotron-3-Nano-30B-A3B`) for caller turns via Token Factory.
-- Nemotron 3 Super (`nvidia/nemotron-3-super-120b-a12b`) configured for debrief (not yet
-  live-tested; debrief has static fallback).
-- No NVIDIA NIM, Triton, or other tooling beyond the Nemotron models via Token Factory.
-
-## Docs gaps
-
-- `GET /v1/models` requires `ai_project_id` query param; docs introduction page
-  doesn't mention this. Worth documenting clearly.
-- The model catalog Markdown is human-readable; `/api/public/models_info` is the
-  authoritative machine-readable source.
+- For a role-play task with a short, in-character reply, Nano was good enough once thinking was off. Replies stayed in character, reacted to what the player said, and did not need a larger model.
+- I did not rely on a larger Nemotron model at runtime. In a small early test (6 calls), a larger model asked to write a structured debrief as JSON fell back half the time, so I replaced that step with deterministic content from authored scenario data.
